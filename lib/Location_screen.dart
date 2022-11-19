@@ -1,9 +1,13 @@
+import 'package:Compass_Edge/Nav_bar.dart';
+import 'package:Compass_Edge/Home_screen.dart';
+import 'package:Compass_Edge/mapbox.dart';
+//services
 import 'dart:developer';
 import 'package:lottie/lottie.dart';
-import 'package:Compass_Edge/Nav_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:Compass_Edge/location_service.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LocationState extends StatefulWidget {
   const LocationState({Key? key}) : super(key: key);
@@ -65,7 +69,65 @@ class _LocationStateState extends State<LocationState> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: SpeedDial(
+        animatedIcon: AnimatedIcons.menu_close,
+        backgroundColor: Colors.black,
+        overlayColor: Colors.transparent,
+        overlayOpacity: 0.25,
+        children: [
+          SpeedDialChild(
+            child: Icon(Icons.person),
+            label: 'About-Us',
+            onTap: () async {
+              var url = 'https://softrateindia.com/';
+
+              if (await canLaunch(url)) {
+                await launch(
+                  url,
+                  forceSafariVC: true,
+                  forceWebView: true,
+                  enableJavaScript: true,
+                );
+              }
+            },
+          ),
+          SpeedDialChild(
+            child: Icon(Icons.map),
+            label: 'Map',
+            onTap: () {
+              Navigator.pop(context);
+
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const MapScreen(),
+              ));
+            },
+          ),
+          SpeedDialChild(
+            child: Icon(Icons.home),
+            label: 'Home',
+            onTap: () {
+              Navigator.pop(context);
+
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => HomeScreen(),
+              ));
+            },
+          ),
+          SpeedDialChild(
+            child: Icon(Icons.refresh),
+            label: 'Refresh Position',
+            onTap: () {
+              Navigator.pop(context);
+
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const LocationState(),
+              ));
+            },
+          ),
+        ],
+      ),
+
+      /* FloatingActionButton(
         onPressed: () {
           //Yet to add
           Navigator.pop(context);
@@ -76,7 +138,7 @@ class _LocationStateState extends State<LocationState> {
         },
         child: const Icon(Icons.replay_outlined),
         backgroundColor: Colors.black,
-      ),
+      ),*/
     );
   }
 

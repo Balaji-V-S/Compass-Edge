@@ -40,7 +40,6 @@ class _NavigationDrawer extends State<NavigationDrawer> {
   Widget buildMenuItems(BuildContext context) => Container(
         padding: const EdgeInsets.all(12),
         child: Wrap(
-          runSpacing: 10,
           children: [
             ListTile(
               leading: const Icon(Icons.home),

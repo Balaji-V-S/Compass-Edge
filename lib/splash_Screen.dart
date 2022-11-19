@@ -1,9 +1,10 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:Compass_Edge/main.dart';
 import 'package:Compass_Edge/Home_screen.dart';
 
 class SplashScreen extends StatelessWidget {
+  const SplashScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
@@ -55,7 +56,7 @@ class SplashScreen extends StatelessWidget {
                         height: 80,
                         width: 80,
                         child: Image.asset(
-                          'assets/img/softrate_logo-removebg-preview.png',
+                          'assets/company-logo.png',
                         ),
                       ),
                       ShaderMask(

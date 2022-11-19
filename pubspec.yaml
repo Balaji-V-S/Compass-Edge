@@ -35,13 +35,13 @@ dependencies:
   lottie: ^1.4.3
   geocoding: ^2.0.1
   introduction_screen: ^3.0.2
-  flutter_native_splash: ^2.0.1+1
   flutter_launcher_icons: "^0.10.0"
   shared_preferences: ^2.0.15
   permission_handler: ^6.0.1
   location: ^4.3.0  
   flutter_map: ^3.0.0
   animated_splash_screen: ^1.3.0
+  flutter_speed_dial: ^6.2.0
  
 
 flutter_icons:
@@ -73,9 +73,7 @@ dev_dependencies:
   
   
 
-flutter_native_splash:
-  color: "#FFFFFF"
-  image: assets/new-logo.png
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

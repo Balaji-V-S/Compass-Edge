@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:Compass_Edge/Nav_bar.dart';
-import 'package:latlong2/latlong.dart';
+import 'package:latlong2/latlong.dart'; //ignore unused refer latlong const value
 import 'package:Compass_Edge/location_service.dart';
-import 'package:location/location.dart';
 
 class MapScreen extends StatelessWidget {
   const MapScreen({Key? key}) : super(key: key);
