@@ -32,12 +32,12 @@ class _LocationStateState extends State<LocationState> {
         backgroundColor: Colors.grey.shade900,
         title: const Text('Locate'),
         centerTitle: true,
-        titleTextStyle: TextStyle(
+        titleTextStyle: const TextStyle(
             color: Color.fromARGB(255, 254, 252, 252),
             fontSize: 16,
             fontWeight: FontWeight.bold),
       ),
-      drawer: NavigationDrawer(),
+      drawer: const NavigationDrawer(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -45,7 +45,7 @@ class _LocationStateState extends State<LocationState> {
           children: [
             Lottie.asset('assets/Animations/globe-loading.json',
                 height: 350, width: 350),
-            const SizedBox(height: 30),
+            const SizedBox(height: 2),
             Text('Location Info', style: getStyle(size: 24)),
             const SizedBox(
               height: 20,
@@ -69,14 +69,15 @@ class _LocationStateState extends State<LocationState> {
           ],
         ),
       ),
-      floatingActionButton: SpeedDial(
+
+      /*floatingActionButton: SpeedDial(
         animatedIcon: AnimatedIcons.menu_close,
         backgroundColor: Colors.black,
         overlayColor: Colors.transparent,
         overlayOpacity: 0.25,
         children: [
           SpeedDialChild(
-            child: Icon(Icons.person),
+            child: const Icon(Icons.person),
             label: 'About-Us',
             onTap: () async {
               var url = 'https://softrateindia.com/';
@@ -92,7 +93,7 @@ class _LocationStateState extends State<LocationState> {
             },
           ),
           SpeedDialChild(
-            child: Icon(Icons.map),
+            child: const Icon(Icons.map),
             label: 'Map',
             onTap: () {
               Navigator.pop(context);
@@ -103,18 +104,18 @@ class _LocationStateState extends State<LocationState> {
             },
           ),
           SpeedDialChild(
-            child: Icon(Icons.home),
+            child: const Icon(Icons.home),
             label: 'Home',
             onTap: () {
               Navigator.pop(context);
 
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => HomeScreen(),
+                builder: (context) => const HomeScreen(),
               ));
             },
           ),
           SpeedDialChild(
-            child: Icon(Icons.refresh),
+            child: const Icon(Icons.refresh),
             label: 'Refresh Position',
             onTap: () {
               Navigator.pop(context);
@@ -125,19 +126,6 @@ class _LocationStateState extends State<LocationState> {
             },
           ),
         ],
-      ),
-
-      /* FloatingActionButton(
-        onPressed: () {
-          //Yet to add
-          Navigator.pop(context);
-
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const LocationState(),
-          ));
-        },
-        child: const Icon(Icons.replay_outlined),
-        backgroundColor: Colors.black,
       ),*/
     );
   }

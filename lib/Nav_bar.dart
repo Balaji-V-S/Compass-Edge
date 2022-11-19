@@ -41,12 +41,12 @@ class _NavigationDrawer extends State<NavigationDrawer> {
         padding: const EdgeInsets.all(12),
         child: Wrap(
           children: [
-            ListTile(
+            /* ListTile(
               leading: const Icon(Icons.home),
               title: const Text('Home'),
               onTap: () =>
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => HomeScreen(),
+                builder: (context) => const HomeScreen(),
               )),
             ),
             ListTile(
@@ -62,7 +62,7 @@ class _NavigationDrawer extends State<NavigationDrawer> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.flash_on_outlined),
+              leading: const Icon(Icons.map),
               title: const Text('Map'),
               onTap: () {
                 Navigator.pop(context);
@@ -85,7 +85,7 @@ class _NavigationDrawer extends State<NavigationDrawer> {
             ),
             const Divider(
               color: Color.fromARGB(255, 15, 9, 9),
-            ),
+            ),*/
             ListTile(
               leading: const Icon(Icons.person),
               title: const Text('About us'),
@@ -120,7 +120,7 @@ class _NavigationDrawer extends State<NavigationDrawer> {
       );
 
   Widget buildCompany(BuildContext context) => Container(
-        padding: const EdgeInsets.only(top: 160),
+        padding: const EdgeInsets.only(top: 350),
         child: Column(
           children: [
             Image.asset(
@@ -128,8 +128,8 @@ class _NavigationDrawer extends State<NavigationDrawer> {
               height: 50,
               width: 120,
             ),
-            Text('Softrate India'),
-            Text('®All rights Reserved')
+            const Text('Softrate India'),
+            const Text('®All rights Reserved')
           ],
         ),
       );

@@ -9,7 +9,7 @@ class MapScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Mapbox Demo',
       home: MapBox(),
     );
@@ -39,7 +39,7 @@ class _MapBoxState extends State<MapBox> {
         backgroundColor: Colors.grey.shade900,
         title: const Text('Navigate'),
         centerTitle: true,
-        titleTextStyle: TextStyle(
+        titleTextStyle: const TextStyle(
             color: Color.fromARGB(255, 254, 252, 252),
             fontSize: 16,
             fontWeight: FontWeight.bold),
@@ -58,7 +58,7 @@ class _MapBoxState extends State<MapBox> {
             urlTemplate:
                 'https://api.mapbox.com/styles/v1/softrateindia/clafl63i4004h14od6kq7kwle/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic29mdHJhdGVpbmRpYSIsImEiOiJjbGFlN3NyNWMwbnp5M29xbnJoZTJzY2ltIn0.-4deai5HiP1L2mghEp7r5A',
             userAgentPackageName: 'com.example.app',
-            additionalOptions: {
+            additionalOptions: const {
               'accessToken':
                   'pk.eyJ1Ijoic29mdHJhdGVpbmRpYSIsImEiOiJjbGFlN3NyNWMwbnp5M29xbnJoZTJzY2ltIn0.-4deai5HiP1L2mghEp7r5A',
               'id': 'mapbox.mapbox-streets-v8',

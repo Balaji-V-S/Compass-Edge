@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_compass/flutter_compass.dart';
 import 'dart:math' as math; // to calculate pi val
 import 'package:flutter/services.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:url_launcher/url_launcher.dart';
 //Pages
@@ -13,9 +12,10 @@ import 'package:Compass_Edge/Nav_bar.dart';
 // Since direction keeps changing... a stf widget
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _HomeScreenState createState() => _HomeScreenState();
 }
 
@@ -25,11 +25,11 @@ class _HomeScreenState extends State<HomeScreen> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Color(0XFF2D2F41),
+        backgroundColor: Color.fromRGBO(45, 47, 65, 1),
         appBar: AppBar(
           backgroundColor: Colors.grey.shade900,
           centerTitle: true,
-          title: Text("Compass Edge"),
+          title: const Text("Compass Edge"),
         ),
         drawer: const NavigationDrawer(),
         body: Builder(builder: (context) {
@@ -39,14 +39,14 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           );
         }),
-        floatingActionButton: SpeedDial(
+        /*floatingActionButton: SpeedDial(
           animatedIcon: AnimatedIcons.menu_close,
           backgroundColor: Colors.black,
           overlayColor: Colors.transparent,
           overlayOpacity: 0.25,
           children: [
             SpeedDialChild(
-              child: Icon(Icons.person),
+              child: const Icon(Icons.person),
               label: 'About-Us',
               onTap: () async {
                 var url = 'https://softrateindia.com/';
@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
             SpeedDialChild(
-              child: Icon(Icons.map),
+              child: const Icon(Icons.map),
               label: 'Map',
               onTap: () {
                 Navigator.pop(context);
@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
             SpeedDialChild(
-              child: Icon(Icons.pin_drop),
+              child: const Icon(Icons.pin_drop),
               label: 'Locate',
               onTap: () {
                 Navigator.pop(context);
@@ -84,18 +84,18 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
             SpeedDialChild(
-              child: Icon(Icons.home),
+              child: const Icon(Icons.home),
               label: 'Home',
               onTap: () {
                 Navigator.pop(context);
 
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => HomeScreen(),
+                  builder: (context) => const HomeScreen(),
                 ));
               },
             ),
           ],
-        ),
+        ),*/
       ),
     );
   }
@@ -113,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         }
@@ -123,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
         // if direction is null, then device does not support this sensor
         // show error message
         if (direction == null)
-          return Center(
+          return const Center(
             child: Text("Device does not have sensors !"),
           );
 
@@ -132,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Stack(
             children: [
               Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 alignment: Alignment.center,
                 /*decoration: BoxDecoration(
                 shape: BoxShape.circle,
@@ -149,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Center(
                 child: Text(
                   "$ang",
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Color(0xFFEBEBEB),
                     fontSize: 56,
                   ),
@@ -165,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: width / 10,
                   child: Container(
                     //color: HSLColor.fromAHSL(0.85, 0, 0, 0.05).toColor(),
-                    color: Color.fromARGB(186, 245, 4, 4),
+                    color: const Color.fromARGB(186, 245, 4, 4),
                   ),
                 ),
               ),
@@ -189,13 +189,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () {
                   Navigator.of(context).pop(true);
                 },
-                child: Text("Yes"),
+                child: const Text("Yes"),
               ),
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop(false);
                 },
-                child: Text("No"),
+                child: const Text("No"),
               )
             ],
           );

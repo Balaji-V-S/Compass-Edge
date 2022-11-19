@@ -1,6 +1,7 @@
+import 'package:Compass_Edge/Home_screen.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:Compass_Edge/Home_screen.dart';
+import 'package:Compass_Edge/Nav_layer.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -42,7 +43,7 @@ class SplashScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'from',
                     style: TextStyle(
                       fontSize: 18,
@@ -61,13 +62,13 @@ class SplashScreen extends StatelessWidget {
                       ),
                       ShaderMask(
                         shaderCallback: (Rect rect) {
-                          return LinearGradient(colors: [
+                          return const LinearGradient(colors: [
                             Colors.purple,
                             Colors.purpleAccent,
                             Colors.pinkAccent
                           ]).createShader(rect);
                         },
-                        child: Text(
+                        child: const Text(
                           'Softrate',
                           style: TextStyle(
                             color: Colors.white,
@@ -84,7 +85,7 @@ class SplashScreen extends StatelessWidget {
           ),
         ),
       ),
-      nextScreen: HomeScreen(),
+      nextScreen: const NavBox(),
       splashTransition: SplashTransition.fadeTransition,
     );
   }
