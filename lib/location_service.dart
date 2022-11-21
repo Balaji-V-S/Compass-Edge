@@ -47,7 +47,7 @@ class LocationService {
       {required LocationData locationData}) async {
     final List<goa.Placemark?> placeMarks = await goa.placemarkFromCoordinates(
         locationData.latitude!, locationData.longitude!);
-    if (placeMarks != null && placeMarks.isNotEmpty) {
+    if (placeMarks.isNotEmpty) {
       return placeMarks[0];
     }
     return null;
