@@ -134,10 +134,6 @@ class _HomeScreenState extends State<HomeScreen> {
               Container(
                 padding: const EdgeInsets.all(10),
                 alignment: Alignment.center,
-                /*decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Color(0xFFEBEBEB),
-              ),*/
                 child: Transform.rotate(
                   angle: ((ang ?? 0) * (math.pi / 180) * -1),
                   child: Image.asset(

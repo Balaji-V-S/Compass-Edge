@@ -1,3 +1,4 @@
+import 'package:Compass_Edge/Nav_layer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
@@ -118,7 +119,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               prefs.setBool('showHome', true);
               //Navigation context for on done...
               Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => const HomeScreen()));
+                  MaterialPageRoute(builder: (context) => const NavBox()));
             }),
       );
 

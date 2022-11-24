@@ -43,7 +43,7 @@ class _LocationStateState extends State<LocationState> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Lottie.asset('assets/Animations/globe-loading.json',
+            Lottie.asset('assets/Animations/globe.json',
                 height: 350, width: 350),
             const SizedBox(height: 2),
             Text('Location Info', style: getStyle(size: 24)),
