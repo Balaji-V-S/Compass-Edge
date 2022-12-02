@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:Compass_Edge/Nav_bar.dart';
 import 'package:latlong2/latlong.dart'; //ignore unused refer latlong const value
-import 'package:Compass_Edge/location_service.dart';
+import 'package:Compass_Edge/sharedPrefs.dart'; //gets value from sharedprefs....
 
 class MapScreen extends StatelessWidget {
   const MapScreen({Key? key}) : super(key: key);
@@ -24,20 +24,27 @@ class MapBox extends StatefulWidget {
 }
 
 class _MapBoxState extends State<MapBox> {
-  double? lat = 0, long = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    getLocation();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey.shade900,
-        title: const Text('Navigate'),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(
+                'assets/AppBar/map.png',
+                fit: BoxFit.contain,
+                height: 35,
+              ),
+            ),
+            Container(
+                padding: const EdgeInsets.only(right: 90, left: 10),
+                child: Text('Navigate'))
+          ],
+        ),
         centerTitle: true,
         titleTextStyle: const TextStyle(
             color: Color.fromARGB(255, 254, 252, 252),
@@ -47,12 +54,10 @@ class _MapBoxState extends State<MapBox> {
       drawer: const NavigationDrawer(),
       body: FlutterMap(
         options: MapOptions(
-            center: LatLng(lat!, long!),
-            zoom: 10.0,
-            rotation: 180.0,
-            onTap: (LatLng, LatLong) {
-              print(LatLong);
-            }),
+          center: LatLng(13.0, 28.5),
+          zoom: 10.0,
+          //rotation: 180.0,
+        ),
         children: [
           TileLayer(
             urlTemplate:
@@ -64,20 +69,27 @@ class _MapBoxState extends State<MapBox> {
               'id': 'mapbox.mapbox-streets-v8',
             },
           ),
+          MarkerLayer(
+            markers: [
+              Marker(
+                  width: 45.0,
+                  height: 45.0,
+                  point: LatLng(13.0, 28.5),
+                  builder: (context) => Container(
+                        child: IconButton(
+                          icon: const Icon(Icons.location_on),
+                          color: Colors.red,
+                          iconSize: 45.0,
+                          onPressed: () {
+                            // ignore: avoid_print
+                            print('Marker Pressed');
+                          },
+                        ),
+                      ))
+            ],
+          )
         ],
       ),
     );
-  }
-
-  void getLocation() async {
-    final Service = LocationService();
-    final LocationData = await Service.getLocation();
-    //
-    if (LocationData != null) {
-      setState(() {
-        lat = LocationData.latitude!;
-        long = LocationData.longitude!;
-      });
-    }
   }
 }
