@@ -8,6 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:Compass_Edge/Location_screen.dart';
 import 'package:Compass_Edge/mapbox.dart';
 import 'package:Compass_Edge/Nav_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // Since direction keeps changing... a stf widget
 

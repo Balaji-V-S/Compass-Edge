@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:Compass_Edge/Nav_bar.dart';
 import 'package:latlong2/latlong.dart'; //ignore unused refer latlong const value
 import 'package:Compass_Edge/sharedPrefs.dart'; //gets value from sharedprefs....
+import 'package:google_fonts/google_fonts.dart';
 
 class MapScreen extends StatelessWidget {
   const MapScreen({Key? key}) : super(key: key);
