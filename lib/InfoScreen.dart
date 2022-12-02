@@ -32,6 +32,7 @@ class Infopage extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
+            SizedBox(height: 10),
             Text('info'),
           ],
         ),
