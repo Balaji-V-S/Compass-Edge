@@ -5,9 +5,8 @@ import 'package:Compass_Edge/mapbox.dart';
 import 'dart:developer';
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:Compass_Edge/location_service.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LocationState extends StatefulWidget {
   const LocationState({Key? key}) : super(key: key);
@@ -30,7 +29,22 @@ class _LocationStateState extends State<LocationState> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey.shade900,
-        title: const Text('Locate'),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset(
+                'assets/AppBar/locate.png',
+                fit: BoxFit.contain,
+                height: 35,
+              ),
+            ),
+            Container(
+                padding: const EdgeInsets.only(right: 90, left: 10),
+                child: Text('Locate'))
+          ],
+        ),
         centerTitle: true,
         titleTextStyle: const TextStyle(
             color: Color.fromARGB(255, 254, 252, 252),
@@ -69,64 +83,6 @@ class _LocationStateState extends State<LocationState> {
           ],
         ),
       ),
-
-      /*floatingActionButton: SpeedDial(
-        animatedIcon: AnimatedIcons.menu_close,
-        backgroundColor: Colors.black,
-        overlayColor: Colors.transparent,
-        overlayOpacity: 0.25,
-        children: [
-          SpeedDialChild(
-            child: const Icon(Icons.person),
-            label: 'About-Us',
-            onTap: () async {
-              var url = 'https://softrateindia.com/';
-
-              if (await canLaunch(url)) {
-                await launch(
-                  url,
-                  forceSafariVC: true,
-                  forceWebView: true,
-                  enableJavaScript: true,
-                );
-              }
-            },
-          ),
-          SpeedDialChild(
-            child: const Icon(Icons.map),
-            label: 'Map',
-            onTap: () {
-              Navigator.pop(context);
-
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const MapScreen(),
-              ));
-            },
-          ),
-          SpeedDialChild(
-            child: const Icon(Icons.home),
-            label: 'Home',
-            onTap: () {
-              Navigator.pop(context);
-
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const HomeScreen(),
-              ));
-            },
-          ),
-          SpeedDialChild(
-            child: const Icon(Icons.refresh),
-            label: 'Refresh Position',
-            onTap: () {
-              Navigator.pop(context);
-
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const LocationState(),
-              ));
-            },
-          ),
-        ],
-      ),*/
     );
   }
 
@@ -134,6 +90,9 @@ class _LocationStateState extends State<LocationState> {
       TextStyle(fontSize: size, fontWeight: FontWeight.bold);
 
   void getLocation() async {
+    // Obtain shared preferences.
+
+    //----------------------------------------------------//
     final Service = LocationService();
     final LocationData = await Service.getLocation();
     //

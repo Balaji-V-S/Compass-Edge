@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:location/location.dart';
 import 'package:geocoding/geocoding.dart' as goa;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LocationService {
   late Location _location;
@@ -47,7 +48,8 @@ class LocationService {
       {required LocationData locationData}) async {
     final List<goa.Placemark?> placeMarks = await goa.placemarkFromCoordinates(
         locationData.latitude!, locationData.longitude!);
-    if (placeMarks.isNotEmpty) {
+
+    if (placeMarks != null && placeMarks.isNotEmpty) {
       return placeMarks[0];
     }
     return null;

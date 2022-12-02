@@ -6,6 +6,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:Compass_Edge/Home_screen.dart';
 import 'package:Compass_Edge/splash_Screen.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:latlong2/latlong.dart';
+
+//stores the data in local system
+late SharedPreferences sharedPreferences;
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,7 +53,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             pages: [
               PageViewModel(
                 title: 'Compass Edge',
-                body: 'Unleash your thirst for expedetion',
+                body: 'Unleash your thirst for expedition',
                 image: buildImage('assets/Animations/flat-compass.json'),
                 decoration: getPageDecoration(),
               ),
@@ -103,7 +107,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               prefs.setBool('showHome', true);
               //to push the home screen
               Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (_) => const HomeScreen()));
+                  MaterialPageRoute(builder: (_) => const SplashScreen()));
             },
             isProgressTap: false,
             animationDuration: 500,

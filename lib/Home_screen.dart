@@ -25,11 +25,26 @@ class _HomeScreenState extends State<HomeScreen> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Color.fromRGBO(45, 47, 65, 1),
+        backgroundColor: const Color.fromRGBO(45, 47, 65, 1),
         appBar: AppBar(
           backgroundColor: Colors.grey.shade900,
           centerTitle: true,
-          title: const Text("Compass Edge"),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.asset(
+                  'assets/AppBar/compass.png',
+                  fit: BoxFit.contain,
+                  height: 40,
+                ),
+              ),
+              Container(
+                  padding: const EdgeInsets.only(right: 90, left: 10),
+                  child: Text('Compass Edge'))
+            ],
+          ),
         ),
         drawer: const NavigationDrawer(),
         body: Builder(builder: (context) {

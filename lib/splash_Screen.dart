@@ -16,8 +16,8 @@ class SplashScreen extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Colors.cyanAccent.shade100.withOpacity(.6),
-              Colors.lightBlueAccent.shade100.withOpacity(.4)
+              Colors.white.withOpacity(.6),
+              Colors.white.withOpacity(.4)
             ],
           ),
         ),
@@ -65,7 +65,7 @@ class SplashScreen extends StatelessWidget {
                           return const LinearGradient(colors: [
                             Colors.purple,
                             Colors.purpleAccent,
-                            Colors.pinkAccent
+                            Colors.pink
                           ]).createShader(rect);
                         },
                         child: const Text(
