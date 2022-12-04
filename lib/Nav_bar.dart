@@ -31,7 +31,8 @@ class _NavigationDrawer extends State<NavigationDrawer> {
   }
 
   Widget buildHeader(BuildContext context) => Container(
-        color: Colors.red,
+        color: Colors.grey.shade500,
+        child: Image.asset('assets/new-logo.png'),
         padding: EdgeInsets.only(
           top: MediaQuery.of(context).padding.top,
         ),

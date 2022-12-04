@@ -25,7 +25,7 @@ class Infopage extends StatelessWidget {
             ),
             Container(
                 padding: const EdgeInsets.only(right: 90, left: 10),
-                child: Text('Information'))
+                child: const Text('Information'))
           ],
         ),
       ),
@@ -37,6 +37,37 @@ class Infopage extends StatelessWidget {
             const SizedBox(height: 10),
             Text(
               'PRIVACY POLICY',
+              style: GoogleFonts.lato(
+                textStyle: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Image.asset('assets/security.png'),
+            const SizedBox(height: 15),
+            const Text('Are you concerned about data security?'),
+            const SizedBox(height: 10),
+            const Text(
+                "Relax! It's Softrate, and we won't gather any user data"),
+            const SizedBox(height: 30),
+            const Text(
+              'We Keep Your Information \nPrivate,Safe and \nSecured',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 20),
+            const Text(
+                'Softrate respects and protects your privacy through \n industry-leading security infrastructure, responsible \n data practises, and simple privacy tools \n that put you in control.',
+                textAlign: TextAlign.center),
+            const SizedBox(
+              height: 5,
+            ),
+            // ignore: unnecessary_new
+            new Row(
+              children: [
+                Image.asset('assets/new-logo.png', height: 110, width: 110),
+                Image.asset('assets/company-logo.png', width: 130),
+                Image.asset('assets/Mapbox_logo.png', width: 150),
+              ],
             ),
           ],
         ),

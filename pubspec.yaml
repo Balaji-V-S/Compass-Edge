@@ -103,6 +103,16 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+fonts:
+  - family: Exo2
+    fonts:
+      - asset: assets/Fonts/Exo2-Italic-VariableFont_wght.ttf
+      - asset: assets/Fonts/Exo-VariableFont_wght.ttf
+
+      
+  - family: SecularOne
+    fonts:
+      - asset: assets/Fonts/SecularOne-regular.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:

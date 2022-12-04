@@ -90,13 +90,10 @@ class _LocationStateState extends State<LocationState> {
     );
   }
 
-  TextStyle getStyle({double size = 20}) =>
-      TextStyle(fontSize: size, fontWeight: FontWeight.bold);
+  TextStyle getStyle({double size = 20}) => TextStyle(
+      fontSize: size, fontWeight: FontWeight.bold, fontFamily: 'SecularOne');
 
   void getLocation() async {
-    // Obtain shared preferences.
-
-    //----------------------------------------------------//
     final Service = LocationService();
     final LocationData = await Service.getLocation();
     //
