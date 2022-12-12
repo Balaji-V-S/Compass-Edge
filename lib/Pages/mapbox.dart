@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:Compass_Edge/Nav_bar.dart';
+import 'package:Compass_Edge/Pages/Nav_bar.dart';
 import 'package:latlong2/latlong.dart'; //ignore unused refer latlong const value
 import 'package:Compass_Edge/sharedPrefs.dart'; //gets value from sharedprefs....
 import 'package:google_fonts/google_fonts.dart';
@@ -55,7 +55,7 @@ class _MapBoxState extends State<MapBox> {
       drawer: const NavigationDrawer(),
       body: FlutterMap(
         options: MapOptions(
-          center: LatLng(13.0, 28.5),
+          center: LatLng(13.0827, 80.2707),
           zoom: 10.0,
           //rotation: 180.0,
         ),
@@ -75,7 +75,7 @@ class _MapBoxState extends State<MapBox> {
               Marker(
                   width: 45.0,
                   height: 45.0,
-                  point: LatLng(13.0, 28.5),
+                  point: LatLng(13.0827, 80.2707),
                   builder: (context) => Container(
                         child: IconButton(
                           icon: const Icon(Icons.location_on),

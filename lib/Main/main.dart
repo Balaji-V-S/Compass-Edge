@@ -3,16 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:Compass_Edge/Home_screen.dart';
-import 'package:Compass_Edge/splash_Screen.dart';
+//import 'package:Compass_Edge/Home_screen.dart';
+import 'package:Compass_Edge/Pages/splash_Screen.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:latlong2/latlong.dart';
+//Google Ad services
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 //stores the data in local system
 late SharedPreferences sharedPreferences;
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
 
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);

@@ -51,5 +51,8 @@
 		<true/>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<key>GADApplicationIdentifier</key>
+		<string>ca-app-pub-6556402405172089~9236052187</string>	
+
 	</dict>
 </plist>

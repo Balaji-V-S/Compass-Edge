@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 //pages
-import 'package:Compass_Edge/Home_screen.dart';
-import 'package:Compass_Edge/Location_screen.dart';
-import 'package:Compass_Edge/mapbox.dart';
-import 'package:Compass_Edge/InfoScreen.dart';
+import 'package:Compass_Edge/Pages/Home_screen.dart';
+import 'package:Compass_Edge/Pages/Location_screen.dart';
+import 'package:Compass_Edge/Pages/mapbox.dart';
+import 'package:Compass_Edge/Pages/InfoScreen.dart';
 
 class NavBox extends StatefulWidget {
   const NavBox({Key? key}) : super(key: key);

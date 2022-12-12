@@ -1,11 +1,11 @@
-import 'package:Compass_Edge/Nav_bar.dart';
-import 'package:Compass_Edge/Home_screen.dart';
-import 'package:Compass_Edge/mapbox.dart';
+import 'package:Compass_Edge/Pages/Nav_bar.dart';
+import 'package:Compass_Edge/Pages/Home_screen.dart';
+import 'package:Compass_Edge/Pages/mapbox.dart';
 //services
 import 'dart:developer';
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
-import 'package:Compass_Edge/location_service.dart';
+import 'package:Compass_Edge/Services/location_service.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -59,9 +59,8 @@ class _LocationStateState extends State<LocationState> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.only(right: 50, left: 50),
-              child: Lottie.asset('assets/Animations/globe.json',
-                  height: 350, width: 350),
+              padding: const EdgeInsets.only(right: 40, left: 40),
+              child: Lottie.asset('assets/Animations/globe.json'),
             ),
             const SizedBox(height: 2),
             Text('Location Info', style: getStyle(size: 24)),

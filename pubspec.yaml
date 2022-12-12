@@ -42,8 +42,11 @@ dependencies:
   location: ^4.3.0  
   flutter_map: ^3.0.0
   animated_splash_screen: ^1.3.0 #animated splash screen
-  flutter_speed_dial: ^6.2.0 #multiple action buttons
   google_fonts: ^3.0.1
+  google_mobile_ads: ^2.3.0
+  torch_light: ^1.0.0
+  lite_rolling_switch: ^1.0.0
+  animated_icon_button: ^1.0.2 #icon button for torch
 
 flutter_icons:
   android: "launcher_icon"

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:Compass_Edge/Nav_bar.dart';
+import 'package:Compass_Edge/Pages/Nav_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Infopage extends StatelessWidget {
@@ -59,16 +59,14 @@ class Infopage extends StatelessWidget {
                 'Softrate respects and protects your privacy through \n industry-leading security infrastructure, responsible \n data practises, and simple privacy tools \n that put you in control.',
                 textAlign: TextAlign.center),
             const SizedBox(
-              height: 5,
+              height: 15,
             ),
             // ignore: unnecessary_new
-            new Row(
-              children: [
-                Image.asset('assets/new-logo.png', height: 110, width: 110),
-                Image.asset('assets/company-logo.png', width: 130),
-                Image.asset('assets/Mapbox_logo.png', width: 150),
-              ],
+            new Center(
+              child: Image.asset('assets/company-logo.png', width: 130),
             ),
+            const SizedBox(height: 20),
+            const Text('')
           ],
         ),
       ),

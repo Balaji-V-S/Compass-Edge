@@ -1,4 +1,4 @@
-import 'package:Compass_Edge/Home_screen.dart';
+import 'package:Compass_Edge/Pages/Home_screen.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:Compass_Edge/Nav_layer.dart';

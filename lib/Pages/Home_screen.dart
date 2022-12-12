@@ -1,13 +1,18 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_compass/flutter_compass.dart';
 import 'dart:math' as math; // to calculate pi val
+import 'package:lite_rolling_switch/lite_rolling_switch.dart';
+import 'package:torch_light/torch_light.dart';
+import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:animated_icon_button/animated_icon_button.dart';
+//import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:url_launcher/url_launcher.dart';
 //Pages
-import 'package:Compass_Edge/Location_screen.dart';
-import 'package:Compass_Edge/mapbox.dart';
-import 'package:Compass_Edge/Nav_bar.dart';
+import 'package:Compass_Edge/Pages/Location_screen.dart';
+import 'package:Compass_Edge/Pages/mapbox.dart';
+import 'package:Compass_Edge/Pages/Nav_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // Since direction keeps changing... a stf widget
@@ -21,6 +26,38 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool hasflashlight = true; //to set is there any flashlight ?
+  bool isturnon = false; //to set if flash light is on or off
+  IconData flashicon = Icons.flashlight_on_sharp; //icon for lashlight button
+
+  void torchLightOff() async {
+    try {
+      await TorchLight.disableTorch();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void torchLightOn() async {
+    try {
+      await TorchLight.enableTorch();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  @override
+  void initState() {
+    Future.delayed(Duration.zero, () async {
+      //we use Future.delayed because there is async function inside it.
+      bool istherelight = true;
+      setState(() {
+        hasflashlight = istherelight;
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -36,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image.asset(
-                  'assets/AppBar/compass.png',
+                  'assets/logo-png.png',
                   fit: BoxFit.contain,
                   height: 40,
                 ),
@@ -55,63 +92,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           );
         }),
-        /*floatingActionButton: SpeedDial(
-          animatedIcon: AnimatedIcons.menu_close,
-          backgroundColor: Colors.black,
-          overlayColor: Colors.transparent,
-          overlayOpacity: 0.25,
-          children: [
-            SpeedDialChild(
-              child: const Icon(Icons.person),
-              label: 'About-Us',
-              onTap: () async {
-                var url = 'https://softrateindia.com/';
-
-                if (await canLaunch(url)) {
-                  await launch(
-                    url,
-                    forceSafariVC: true,
-                    forceWebView: true,
-                    enableJavaScript: true,
-                  );
-                }
-              },
-            ),
-            SpeedDialChild(
-              child: const Icon(Icons.map),
-              label: 'Map',
-              onTap: () {
-                Navigator.pop(context);
-
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const MapScreen(),
-                ));
-              },
-            ),
-            SpeedDialChild(
-              child: const Icon(Icons.pin_drop),
-              label: 'Locate',
-              onTap: () {
-                Navigator.pop(context);
-
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const LocationState(),
-                ));
-              },
-            ),
-            SpeedDialChild(
-              child: const Icon(Icons.home),
-              label: 'Home',
-              onTap: () {
-                Navigator.pop(context);
-
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const HomeScreen(),
-                ));
-              },
-            ),
-          ],
-        ),*/
       ),
     );
   }
@@ -148,13 +128,52 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Stack(
             children: [
               Container(
-                padding: const EdgeInsets.all(10),
+                padding: EdgeInsets.all(10),
                 alignment: Alignment.center,
                 child: Transform.rotate(
-                  angle: ((ang ?? 0) * (math.pi / 180) * -1),
+                  angle: ((ang) * (math.pi / 180) * -1),
                   child: Image.asset(
                     'assets/digicom.png',
                     scale: 0.9,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 475),
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 100, vertical: 15),
+                  alignment: Alignment.center,
+                  child: AnimatedIconButton(
+                    size: 30,
+                    onPressed: () {
+                      if (isturnon) {
+                        //if light is on, then turn off
+                        torchLightOn();
+                        setState(() {
+                          isturnon = false;
+                          flashicon = Icons.flashlight_off_sharp;
+                        });
+                      } else {
+                        //if light is off, then turn on.
+                        torchLightOff();
+                        setState(() {
+                          isturnon = true;
+                          flashicon = Icons.flashlight_on_sharp;
+                        });
+                      }
+                    },
+                    duration: const Duration(milliseconds: 200),
+                    splashColor: Colors.red,
+                    icons: const <AnimatedIconItem>[
+                      AnimatedIconItem(
+                        icon: Icon(Icons.flashlight_on_sharp,
+                            color: Colors.white),
+                      ),
+                      AnimatedIconItem(
+                        icon: Icon(Icons.flashlight_off_sharp,
+                            color: Colors.white),
+                      ),
+                    ],
                   ),
                 ),
               ),
