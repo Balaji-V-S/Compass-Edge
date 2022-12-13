@@ -5,6 +5,7 @@ import 'dart:math' as math; // to calculate pi val
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 import 'package:torch_light/torch_light.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
+import 'package:Compass_Edge/Pages/Police.dart';
 import 'package:flutter/services.dart';
 import 'package:animated_icon_button/animated_icon_button.dart';
 //import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -128,6 +129,33 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Stack(
             children: [
               Container(
+                child: GestureDetector(
+                  onDoubleTap: () => blinker(),
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 25),
+                      child: Container(
+                        child: Column(
+                          children: [
+                            Image.asset(
+                              'assets/police-light.png',
+                              height: 45,
+                              width: 100,
+                            ),
+                            Text(
+                              'EMERGENCY',
+                              style: TextStyle(
+                                  color: Colors.grey[300],
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
                 padding: EdgeInsets.all(10),
                 alignment: Alignment.center,
                 child: Transform.rotate(
@@ -138,42 +166,41 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 475),
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 100, vertical: 15),
-                  alignment: Alignment.center,
-                  child: AnimatedIconButton(
-                    size: 30,
-                    onPressed: () {
-                      if (isturnon) {
-                        //if light is on, then turn off
-                        torchLightOn();
-                        setState(() {
-                          isturnon = false;
-                          flashicon = Icons.flashlight_off_sharp;
-                        });
-                      } else {
-                        //if light is off, then turn on.
-                        torchLightOff();
-                        setState(() {
-                          isturnon = true;
-                          flashicon = Icons.flashlight_on_sharp;
-                        });
-                      }
-                    },
-                    duration: const Duration(milliseconds: 200),
-                    splashColor: Colors.red,
-                    icons: const <AnimatedIconItem>[
-                      AnimatedIconItem(
-                        icon: Icon(Icons.flashlight_on_sharp,
-                            color: Colors.white),
+              Container(
+                child: GestureDetector(
+                  onTap: () {
+                    if (isturnon) {
+                      //if light is on, then turn off
+                      torchLightOn();
+                      setState(() {
+                        isturnon = false;
+                        flashicon = Icons.flashlight_off_sharp;
+                      });
+                    } else {
+                      //if light is off, then turn on.
+                      torchLightOff();
+                      setState(() {
+                        isturnon = true;
+                        flashicon = Icons.flashlight_on_sharp;
+                      });
+                    }
+                  },
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 465),
+                      child: Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            gradient: RadialGradient(
+                              colors: [Color(0x9cffffff), Color(0xffb1f6ff)],
+                              center: Alignment.center,
+                              radius: 0.8,
+                            )),
+                        child: const Icon(Icons.flashlight_on_sharp),
                       ),
-                      AnimatedIconItem(
-                        icon: Icon(Icons.flashlight_off_sharp,
-                            color: Colors.white),
-                      ),
-                    ],
+                    ),
                   ),
                 ),
               ),
