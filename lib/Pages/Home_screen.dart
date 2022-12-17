@@ -104,15 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
         return WillPopScope(
           child: Stack(
             children: [
-              Container(
-                child: Builder(builder: (context) {
-                  return Column(
-                    children: <Widget>[
-                      Expanded(child: Emergency()),
-                    ],
-                  );
-                }),
-              ),
+              Container(height: 45, child: Emergency()),
               Container(
                 padding: EdgeInsets.all(10),
                 alignment: Alignment.center,
