@@ -34,7 +34,7 @@ class _NavBoxState extends State<NavBox> {
     ];
     return Scaffold(
       extendBody: true,
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.transparent,
       body: screens[index],
       bottomNavigationBar: CurvedNavigationBar(
         //Visuls

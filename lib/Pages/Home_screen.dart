@@ -1,9 +1,9 @@
+import 'package:Compass_Edge/Pages/EmergencyButton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_compass/flutter_compass.dart';
 import 'dart:math' as math; // to calculate pi val
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
-import 'package:torch_light/torch_light.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:Compass_Edge/Pages/Police.dart';
 import 'package:flutter/services.dart';
@@ -13,6 +13,7 @@ import 'package:url_launcher/url_launcher.dart';
 //Pages
 import 'package:Compass_Edge/Pages/Location_screen.dart';
 import 'package:Compass_Edge/Pages/mapbox.dart';
+import 'package:Compass_Edge/Pages/torch.dart';
 import 'package:Compass_Edge/Pages/Nav_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -27,44 +28,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool hasflashlight = true; //to set is there any flashlight ?
-  bool isturnon = false; //to set if flash light is on or off
-  IconData flashicon = Icons.flashlight_on_sharp; //icon for lashlight button
-
-  void torchLightOff() async {
-    try {
-      await TorchLight.disableTorch();
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  void torchLightOn() async {
-    try {
-      await TorchLight.enableTorch();
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  @override
-  void initState() {
-    Future.delayed(Duration.zero, () async {
-      //we use Future.delayed because there is async function inside it.
-      bool istherelight = true;
-      setState(() {
-        hasflashlight = istherelight;
-      });
-    });
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: const Color.fromRGBO(45, 47, 65, 1),
         appBar: AppBar(
           backgroundColor: Colors.grey.shade900,
           centerTitle: true,
@@ -86,13 +54,21 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         drawer: const NavigationDrawer(),
-        body: Builder(builder: (context) {
-          return Column(
-            children: <Widget>[
-              Expanded(child: _buildCompass()),
-            ],
-          );
-        }),
+        body: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+            colors: [Color(0xff2095f3), Color(0xff334192)],
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+          )),
+          child: Builder(builder: (context) {
+            return Column(
+              children: <Widget>[
+                Expanded(child: _buildCompass()),
+              ],
+            );
+          }),
+        ),
       ),
     );
   }
@@ -129,31 +105,13 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Stack(
             children: [
               Container(
-                child: GestureDetector(
-                  onDoubleTap: () => blinker(),
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 25),
-                      child: Container(
-                        child: Column(
-                          children: [
-                            Image.asset(
-                              'assets/police-light.png',
-                              height: 45,
-                              width: 100,
-                            ),
-                            Text(
-                              'EMERGENCY',
-                              style: TextStyle(
-                                  color: Colors.grey[300],
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                child: Builder(builder: (context) {
+                  return Column(
+                    children: <Widget>[
+                      Expanded(child: Emergency()),
+                    ],
+                  );
+                }),
               ),
               Container(
                 padding: EdgeInsets.all(10),
@@ -167,42 +125,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Container(
-                child: GestureDetector(
-                  onTap: () {
-                    if (isturnon) {
-                      //if light is on, then turn off
-                      torchLightOn();
-                      setState(() {
-                        isturnon = false;
-                        flashicon = Icons.flashlight_off_sharp;
-                      });
-                    } else {
-                      //if light is off, then turn on.
-                      torchLightOff();
-                      setState(() {
-                        isturnon = true;
-                        flashicon = Icons.flashlight_on_sharp;
-                      });
-                    }
-                  },
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 465),
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            gradient: RadialGradient(
-                              colors: [Color(0x9cffffff), Color(0xffb1f6ff)],
-                              center: Alignment.center,
-                              radius: 0.8,
-                            )),
-                        child: const Icon(Icons.flashlight_on_sharp),
-                      ),
-                    ),
-                  ),
-                ),
+                child: Builder(builder: (context) {
+                  return Column(
+                    children: <Widget>[
+                      Expanded(child: TorchButton()),
+                    ],
+                  );
+                }),
               ),
               Center(
                 child: Text(

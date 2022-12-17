@@ -42,7 +42,13 @@ class Infopage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            Image.asset('assets/security.png'),
+            new Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+
+              ),
+              child: Image.asset('assets/security.png'),
+            ),
             const SizedBox(height: 15),
             const Text('Are you concerned about data security?'),
             const SizedBox(height: 10),

@@ -3,7 +3,7 @@ import 'package:Compass_Edge/Pages/mapbox.dart';
 import 'package:Compass_Edge/Pages/Location_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter/services.dart';
+//import 'package:flutter/services.dart';
 
 class NavigationDrawer extends StatefulWidget {
   const NavigationDrawer({Key? key}) : super(key: key);
@@ -15,16 +15,22 @@ class NavigationDrawer extends StatefulWidget {
 class _NavigationDrawer extends State<NavigationDrawer> {
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      width: MediaQuery.of(context).size.width * 0.65, //<-- width controller
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            buildHeader(context),
-            buildMenuItems(context),
-            buildCompany(context),
-          ],
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+            topRight: Radius.circular(20), bottomRight: Radius.circular(1000)),
+      ),
+      child: Drawer(
+        width: MediaQuery.of(context).size.width * 0.65, //<-- width controller
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              buildHeader(context),
+              buildMenuItems(context),
+              buildCompany(context),
+            ],
+          ),
         ),
       ),
     );
@@ -49,51 +55,6 @@ class _NavigationDrawer extends State<NavigationDrawer> {
         padding: const EdgeInsets.all(12),
         child: Wrap(
           children: [
-            /* ListTile(
-              leading: const Icon(Icons.home),
-              title: const Text('Home'),
-              onTap: () =>
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => const HomeScreen(),
-              )),
-            ),
-            ListTile(
-              leading: const Icon(Icons.pin_drop),
-              title: const Text('Location'),
-              onTap: () {
-                //close navbar before
-                Navigator.pop(context);
-
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const LocationState(),
-                ));
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.map),
-              title: const Text('Map'),
-              onTap: () {
-                Navigator.pop(context);
-
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const MapScreen(),
-                ));
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.flash_on_outlined),
-              title: const Text('**Soon**'),
-              onTap: () {
-                Navigator.pop(context);
-
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const MapScreen(),
-                ));
-              },
-            ),
-            const Divider(
-              color: Color.fromARGB(255, 15, 9, 9),
-            ),*/
             ListTile(
               leading: const Icon(Icons.person),
               title: const Text('About us'),

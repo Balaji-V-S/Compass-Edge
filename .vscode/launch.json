@@ -16,10 +16,11 @@
             "flutterMode": "profile"
         },
         {
-            "name": "compass_app - prot4 (release mode)",
-            "request": "launch",
+            "name": "Flutter (lib//Main//main.dart)",
             "type": "dart",
-            "flutterMode": "release"
-        }
+            "request": "launch",
+            "program": "lib//Main//main.dart"
+        },
+        
     ]
 }
