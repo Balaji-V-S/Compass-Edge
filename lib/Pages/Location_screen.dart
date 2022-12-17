@@ -54,36 +54,39 @@ class _LocationStateState extends State<LocationState> {
       ),
       drawer: const NavigationDrawer(),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 40, left: 40),
-              child: Lottie.asset('assets/Animations/globe.json'),
-            ),
-            const SizedBox(height: 2),
-            Text('Location Info', style: getStyle(size: 24)),
-            const SizedBox(
-              height: 20,
-            ),
-            Text('Latitude: ${lat ?? 'Loading....'}'),
-            const SizedBox(
-              height: 20,
-            ),
-            Text('Longitude: ${long ?? 'Loading....'}'),
-            const SizedBox(
-              height: 20,
-            ),
-            Text('Country: ${country ?? 'Loading....'}'),
-            const SizedBox(
-              height: 20,
-            ),
-            Text('State: ${state ?? 'Loading....'}'),
-            const SizedBox(
-              height: 20,
-            ),
-          ],
+        child: Container(
+          decoration: BoxDecoration(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 40, left: 40),
+                child: Lottie.asset('assets/Animations/globe.json'),
+              ),
+              const SizedBox(height: 2),
+              Text('Location Info', style: getStyle(size: 24)),
+              const SizedBox(
+                height: 20,
+              ),
+              Text('Latitude: ${lat ?? 'Loading....'}'),
+              const SizedBox(
+                height: 20,
+              ),
+              Text('Longitude: ${long ?? 'Loading....'}'),
+              const SizedBox(
+                height: 20,
+              ),
+              Text('Country: ${country ?? 'Loading....'}'),
+              const SizedBox(
+                height: 20,
+              ),
+              Text('State: ${state ?? 'Loading....'}'),
+              const SizedBox(
+                height: 20,
+              ),
+            ],
+          ),
         ),
       ),
     );
