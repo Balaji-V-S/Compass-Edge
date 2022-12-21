@@ -1,6 +1,9 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:Compass_Edge/Pages/Nav_bar.dart';
 import 'package:Compass_Edge/Pages/Home_screen.dart';
 import 'package:Compass_Edge/Pages/mapbox.dart';
+import 'package:geocoding/geocoding.dart';
 //services
 import 'dart:developer';
 import 'package:lottie/lottie.dart';
@@ -43,7 +46,7 @@ class _LocationStateState extends State<LocationState> {
             ),
             Container(
                 padding: const EdgeInsets.only(right: 90, left: 10),
-                child: Text('Locate'))
+                child: const Text('Locate'))
           ],
         ),
         centerTitle: true,
@@ -55,35 +58,47 @@ class _LocationStateState extends State<LocationState> {
       drawer: const NavigationDrawer(),
       body: Center(
         child: Container(
-          decoration: BoxDecoration(),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+          decoration: const BoxDecoration(),
+          child: Stack(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 40, left: 40),
-                child: Lottie.asset('assets/Animations/globe.json'),
+              const Positioned.fill(
+                //
+                child: Image(
+                  image: AssetImage('assets/location-bg.png'),
+                  opacity: AlwaysStoppedAnimation(.4),
+                  fit: BoxFit.fill,
+                ),
               ),
-              const SizedBox(height: 2),
-              Text('Location Info', style: getStyle(size: 24)),
-              const SizedBox(
-                height: 20,
-              ),
-              Text('Latitude: ${lat ?? 'Loading....'}'),
-              const SizedBox(
-                height: 20,
-              ),
-              Text('Longitude: ${long ?? 'Loading....'}'),
-              const SizedBox(
-                height: 20,
-              ),
-              Text('Country: ${country ?? 'Loading....'}'),
-              const SizedBox(
-                height: 20,
-              ),
-              Text('State: ${state ?? 'Loading....'}'),
-              const SizedBox(
-                height: 20,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 40, left: 40),
+                    child: Lottie.asset('assets/Animations/globe.json'),
+                  ),
+                  const SizedBox(height: 2),
+                  Text('Location Info', style: getStyle(size: 24)),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text('Latitude: ${lat ?? 'Loading....'}'),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text('Longitude: ${long ?? 'Loading....'}'),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text('Country: ${country ?? 'Loading....'}'),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text('State: ${state ?? 'Loading....'}'),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                ],
               ),
             ],
           ),
@@ -99,7 +114,8 @@ class _LocationStateState extends State<LocationState> {
     final Service = LocationService();
     final LocationData = await Service.getLocation();
     //
-    if (LocationData != null) {
+    // ignore: unnecessary_null_comparison
+    if (LocationData != null && Placemark != null) {
       final Placemark = await Service.getPlaceMark(locationData: LocationData);
 
       setState(() {

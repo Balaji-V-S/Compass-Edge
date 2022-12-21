@@ -1,17 +1,20 @@
 import 'package:Compass_Edge/Pages/EmergencyButton.dart';
+import 'package:Compass_Edge/Services/Admobclass.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_compass/flutter_compass.dart';
 import 'dart:math' as math; // to calculate pi val
-import 'package:lite_rolling_switch/lite_rolling_switch.dart';
+
 import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:Compass_Edge/Pages/Police.dart';
 import 'package:flutter/services.dart';
-import 'package:animated_icon_button/animated_icon_button.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+
 //import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:url_launcher/url_launcher.dart';
 //Pages
 import 'package:Compass_Edge/Pages/Location_screen.dart';
+import 'package:Compass_Edge/Services/Admobclass.dart';
 import 'package:Compass_Edge/Pages/mapbox.dart';
 import 'package:Compass_Edge/Pages/torch.dart';
 import 'package:Compass_Edge/Pages/Nav_bar.dart';
@@ -28,6 +31,37 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // BannerAd? _banner;
+  //InterstitialAd? _interstitialAd;
+
+  @override
+  /*void initState() {
+    super.initState();
+
+    _createBannerAd();
+
+    _CreateInterstitialAd();
+  }
+
+  void _createBannerAd() {
+    _banner = BannerAd(
+      size: AdSize.fullBanner,
+      adUnitId: AdMobService.bannerAdUnitId!,
+      listener: AdMobService.bannerListener,
+      request: const AdRequest(),
+    )..load();
+  }
+
+  void _CreateInterstitialAd() {
+    InterstitialAd.load(
+        adUnitId: AdMobService.interstitialAdUnitId!,
+        request: const AdRequest(),
+        adLoadCallback: InterstitialAdLoadCallback(
+          onAdLoaded: (ad) => _interstitialAd = ad,
+          onAdFailedToLoad: (LoadAdError error) => _interstitialAd = null,
+        ));
+  }
+*/
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -49,18 +83,22 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Container(
                   padding: const EdgeInsets.only(right: 90, left: 10),
-                  child: Text('Compass Edge'))
+                  child: const Text('Compass Edge'))
             ],
           ),
         ),
         drawer: const NavigationDrawer(),
         body: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-            colors: [Color(0xff2095f3), Color(0xff334192)],
-            begin: Alignment.bottomCenter,
-            end: Alignment.topCenter,
-          )),
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(255, 93, 172, 236),
+                Color.fromARGB(255, 83, 105, 226)
+              ],
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
+            ),
+          ),
           child: Builder(builder: (context) {
             return Column(
               children: <Widget>[
@@ -104,9 +142,9 @@ class _HomeScreenState extends State<HomeScreen> {
         return WillPopScope(
           child: Stack(
             children: [
-              Container(height: 45, child: Emergency()),
+              Container(height: 45, child: const Emergency()),
               Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 alignment: Alignment.center,
                 child: Transform.rotate(
                   angle: ((ang) * (math.pi / 180) * -1),
@@ -125,6 +163,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 }),
               ),
+              /* Container(
+                margin: const EdgeInsets.only(bottom: 12),
+                //height: 52,
+                child: AdWidget(ad: _banner!),
+              ),*/
               Center(
                 child: Text(
                   "$ang",

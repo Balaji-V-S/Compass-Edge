@@ -38,15 +38,14 @@ class Infopage extends StatelessWidget {
             Text(
               'PRIVACY POLICY',
               style: GoogleFonts.lato(
-                textStyle: TextStyle(fontWeight: FontWeight.bold),
+                textStyle: const TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
             const SizedBox(height: 20),
             new Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-
-              ),
+              width: 200,
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(2.0)),
               child: Image.asset('assets/security.png'),
             ),
             const SizedBox(height: 15),

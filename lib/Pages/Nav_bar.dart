@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:Compass_Edge/Pages/Home_screen.dart';
 import 'package:Compass_Edge/Pages/mapbox.dart';
 import 'package:Compass_Edge/Pages/Location_screen.dart';
@@ -15,30 +17,35 @@ class NavigationDrawer extends StatefulWidget {
 class _NavigationDrawer extends State<NavigationDrawer> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-            topRight: Radius.circular(20), bottomRight: Radius.circular(1000)),
-      ),
-      child: Drawer(
-        width: MediaQuery.of(context).size.width * 0.65, //<-- width controller
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              buildHeader(context),
-              buildMenuItems(context),
-              buildCompany(context),
-            ],
+    return WillPopScope(
+      child: Container(
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(20),
+              bottomRight: Radius.circular(1000)),
+        ),
+        child: Drawer(
+          width:
+              MediaQuery.of(context).size.width * 0.65, //<-- width controller
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                buildHeader(context),
+                buildMenuItems(context),
+                buildCompany(context),
+              ],
+            ),
           ),
         ),
       ),
+      onWillPop: () => _onBackpressed(context),
     );
   }
 
   Widget buildHeader(BuildContext context) => Container(
         child: Image.asset('assets/new-logo.png'),
-        padding: EdgeInsets.only(top: 10),
+        padding: const EdgeInsets.only(top: 10),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
@@ -102,6 +109,8 @@ class _NavigationDrawer extends State<NavigationDrawer> {
           ],
         ),
       );
+
+  ////////////--------------------------Exit button Code-----------------/////////////
   Future<bool> _onBackpressed(BuildContext context) async {
     bool? exitApp = await showDialog(
         context: context,
@@ -112,7 +121,8 @@ class _NavigationDrawer extends State<NavigationDrawer> {
             actions: <Widget>[
               TextButton(
                 onPressed: () {
-                  Navigator.of(context).pop(true);
+                  //Navigator.of(context).pop(true);
+                  exit(0);
                 },
                 child: const Text("Yes"),
               ),

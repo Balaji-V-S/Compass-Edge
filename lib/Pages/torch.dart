@@ -64,14 +64,14 @@ class _TorchButtonState extends State<TorchButton> {
         },
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.only(top: 465),
+            padding: const EdgeInsets.only(top: 350),
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
               decoration: BoxDecoration(
-                  boxShadow: [
-                    const BoxShadow(
+                  boxShadow: const [
+                    BoxShadow(
                       color: Colors.black26,
-                      offset: const Offset(
+                      offset: Offset(
                         10.0,
                         5.0,
                       ),
@@ -80,13 +80,13 @@ class _TorchButtonState extends State<TorchButton> {
                     ), //BoxShadow
                     BoxShadow(
                       color: Colors.white,
-                      offset: const Offset(0.0, 0.0),
+                      offset: Offset(0.0, 0.0),
                       blurRadius: 0.0,
                       spreadRadius: 0.0,
                     ), //BoxShadow
                   ],
                   borderRadius: BorderRadius.circular(15),
-                  gradient: LinearGradient(
+                  gradient: const LinearGradient(
                     colors: [Color(0xff673ab7), Color(0xe6f44336)],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
