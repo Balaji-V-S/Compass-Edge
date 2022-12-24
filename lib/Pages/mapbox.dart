@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:Compass_Edge/Pages/Nav_bar.dart'; //ignore unused refer latlong const value
@@ -68,8 +66,8 @@ class _MapBoxState extends State<MapBox> {
       body: Container(
         child: FlutterMap(
           options: MapOptions(
-            center: LatLng(0.2356, 56.235),
-            zoom: 9.2,
+            center: LatLng(double.parse(lat!), double.parse(long!)),
+            zoom: 20.0,
           ),
           children: [
             TileLayer(
@@ -80,6 +78,16 @@ class _MapBoxState extends State<MapBox> {
                     'pk.eyJ1Ijoic29mdHJhdGVpbmRpYSIsImEiOiJjbGFlN3NyNWMwbnp5M29xbnJoZTJzY2ltIn0.-4deai5HiP1L2mghEp7r5A',
                 'id': 'mapbox.mapbox-streets-v8'
               },
+            ),
+            MarkerLayer(
+              markers: [
+                Marker(
+                  point: LatLng(double.parse(lat!), double.parse(long!)),
+                  width: 40,
+                  height: 40,
+                  builder: (context) => Image.asset('assets/marker-bg.png'),
+                ),
+              ],
             ),
           ],
         ),
@@ -96,8 +104,8 @@ class _MapBoxState extends State<MapBox> {
       final Placemark = await Service.getPlaceMark(locationData: LocationData);
 
       setState(() {
-        lat = LocationData.latitude!.toStringAsFixed(5);
-        long = LocationData.longitude!.toStringAsFixed(5);
+        lat = LocationData.latitude!.toStringAsFixed(7);
+        long = LocationData.longitude!.toStringAsFixed(7);
       });
     }
   }
