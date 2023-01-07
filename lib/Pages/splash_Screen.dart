@@ -1,7 +1,7 @@
-import 'package:Compass_Edge/Pages/Home_screen.dart';
+import 'package:compass_edge/Pages/Home_screen.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:Compass_Edge/Nav_layer.dart';
+import 'package:compass_edge/Nav_layer.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);

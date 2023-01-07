@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:Compass_Edge/Pages/Nav_bar.dart';
+import 'package:compass_edge/Pages/Nav_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Infopage extends StatelessWidget {

@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'dart:io' show Platform;
 import 'package:flutter/cupertino.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';

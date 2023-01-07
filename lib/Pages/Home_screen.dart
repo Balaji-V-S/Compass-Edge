@@ -1,23 +1,23 @@
-import 'package:Compass_Edge/Pages/EmergencyButton.dart';
-import 'package:Compass_Edge/Services/Admobclass.dart';
+import 'package:compass_edge/Pages/EmergencyButton.dart';
+import 'package:compass_edge/Services/Admobclass.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_compass/flutter_compass.dart';
 import 'dart:math' as math; // to calculate pi val
 
 import 'package:cupertino_icons/cupertino_icons.dart';
-import 'package:Compass_Edge/Pages/Police.dart';
+import 'package:compass_edge/Pages/Police.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 //import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:url_launcher/url_launcher.dart';
 //Pages
-import 'package:Compass_Edge/Pages/Location_screen.dart';
-import 'package:Compass_Edge/Services/Admobclass.dart';
-import 'package:Compass_Edge/Pages/mapbox.dart';
-import 'package:Compass_Edge/Pages/torch.dart';
-import 'package:Compass_Edge/Pages/Nav_bar.dart';
+import 'package:compass_edge/Pages/Location_screen.dart';
+import 'package:compass_edge/Services/Admobclass.dart';
+import 'package:compass_edge/Pages/mapbox.dart';
+import 'package:compass_edge/Pages/torch.dart';
+import 'package:compass_edge/Pages/Nav_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // Since direction keeps changing... a stf widget
@@ -135,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
         //print(direction);
         // if direction is null, then device does not support this sensor
         // show error message
-        if (direction == 0.000) {
+        if (direction == 0) {
           double width = MediaQuery.of(context).size.width;
           double height = MediaQuery.of(context).size.height;
           return WillPopScope(
@@ -143,9 +143,9 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Container(height: 45, child: const Emergency()),
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 125, horizontal: 60),
+                  padding: const EdgeInsets.only(top: 0100),
                   child: Container(
+                    alignment: Alignment.topCenter,
                     child: Image.asset(
                       'assets/Compass_null.png',
                       scale: 1.4,
@@ -153,8 +153,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 Container(
-                  child: const Center(
-                    child: Text('OOPS! Magnetometer is missing on your device'),
+                  child: Center(
+                    child: Text(
+                      'OOPS! Magnetometer is missing on your device,\n Unsupported Magnetometer and Altimeter',
+                      style: GoogleFonts.jost(fontSize: 17),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
                 Container(

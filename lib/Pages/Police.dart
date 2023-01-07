@@ -2,7 +2,7 @@
 // ignore_for_file: camel_case_types, non_constant_identifier_names, file_names, duplicate_ignore
 
 import 'package:flutter/material.dart';
-import 'package:Compass_Edge/Nav_layer.dart';
+import 'package:compass_edge/Nav_layer.dart';
 import 'package:phlox_animations/phlox_animations.dart';
 
 class blinker extends StatelessWidget {

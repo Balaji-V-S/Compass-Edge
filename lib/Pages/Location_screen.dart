@@ -1,14 +1,14 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:Compass_Edge/Pages/Nav_bar.dart';
-import 'package:Compass_Edge/Pages/Home_screen.dart';
-import 'package:Compass_Edge/Pages/mapbox.dart';
+import 'package:compass_edge/Pages/Nav_bar.dart';
+import 'package:compass_edge/Pages/Home_screen.dart';
+import 'package:compass_edge/Pages/mapbox.dart';
 import 'package:geocoding/geocoding.dart';
 //services
 import 'dart:developer';
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
-import 'package:Compass_Edge/Services/location_service.dart';
+import 'package:compass_edge/Services/location_service.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LocationState extends StatefulWidget {

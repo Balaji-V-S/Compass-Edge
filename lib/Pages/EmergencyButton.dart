@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:Compass_Edge/Pages/Police.dart';
+import 'package:compass_edge/Pages/Police.dart';
 
 class Emergency extends StatelessWidget {
   const Emergency({Key? key}) : super(key: key);

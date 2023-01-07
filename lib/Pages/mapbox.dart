@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:Compass_Edge/Pages/Nav_bar.dart'; //ignore unused refer latlong const value
-import 'package:Compass_Edge/Services/location_service.dart';
+import 'package:compass_edge/Pages/Nav_bar.dart'; //ignore unused refer latlong const value
+import 'package:compass_edge/Services/location_service.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:latlong2/latlong.dart';
 //import 'package:Compass_Edge/sharedPrefs.dart'; //gets value from sharedprefs....
@@ -94,32 +94,6 @@ class _MapBoxState extends State<MapBox> {
             ),
           ],
         ),
-      ),
-      floatingActionButton: SpeedDial(
-        children: [
-          SpeedDialChild(
-            child: const Icon(CupertinoIcons.globe),
-            label: 'Satellite',
-            onTap: () {
-              setState(() {});
-            },
-          ),
-          SpeedDialChild(
-            child: const Icon(Icons.add_home_work_outlined),
-            label: 'Street',
-            onTap: () {
-              setState(() {});
-            },
-          ),
-          SpeedDialChild(
-            child: const Icon(Icons.add_road),
-            label: 'Navigation',
-            onTap: () {
-              setState(() {});
-            },
-          ),
-        ],
-        child: const Icon(Icons.layers_outlined),
       ),
     );
   }
