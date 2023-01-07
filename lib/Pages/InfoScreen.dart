@@ -25,7 +25,9 @@ class Infopage extends StatelessWidget {
             ),
             Container(
                 padding: const EdgeInsets.only(right: 90, left: 10),
-                child: const Text('Information'))
+                child: Text('Information',
+                    style: GoogleFonts.jost(
+                        fontSize: 20, fontWeight: FontWeight.bold)))
           ],
         ),
       ),
@@ -42,27 +44,37 @@ class Infopage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            new Container(
-              width: 200,
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(2.0)),
-              child: Image.asset('assets/security.png'),
+            Container(
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: Image.asset(
+                    'assets/security.png',
+                    width: 300,
+                  )),
             ),
             const SizedBox(height: 15),
-            const Text('Are you concerned about data security?'),
+            Text(
+              'Are you concerned about data security?',
+              style: GoogleFonts.jost(),
+            ),
             const SizedBox(height: 10),
-            const Text(
-                "Relax! It's Softrate, and we won't gather any user data"),
+            Text(
+              "Relax! It's Softrate, and we won't gather any user data.",
+              style: GoogleFonts.jost(),
+            ),
             const SizedBox(height: 30),
-            const Text(
-              'We Keep Your Information \nPrivate,Safe and \nSecured',
+            Text(
+              'We Keep Your Information \nPrivate, Safe and \nSecured',
               textAlign: TextAlign.center,
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style:
+                  GoogleFonts.jost(fontSize: 15, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),
-            const Text(
-                'Softrate respects and protects your privacy through \n industry-leading security infrastructure, responsible \n data practises, and simple privacy tools \n that put you in control.',
-                textAlign: TextAlign.center),
+            Text(
+              'Softrate respects and protects your privacy through \n industry-leading security infrastructure, responsible \n data practises, and simple privacy tools \n that put you in control.',
+              textAlign: TextAlign.center,
+              style: GoogleFonts.jost(fontSize: 15),
+            ),
             const SizedBox(
               height: 15,
             ),

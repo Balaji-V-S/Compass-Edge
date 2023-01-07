@@ -1,3 +1,6 @@
+// ignore: file_names
+// ignore_for_file: camel_case_types, non_constant_identifier_names, file_names, duplicate_ignore
+
 import 'package:flutter/material.dart';
 import 'package:Compass_Edge/Nav_layer.dart';
 import 'package:phlox_animations/phlox_animations.dart';
@@ -14,28 +17,28 @@ class blinker extends StatelessWidget {
         children: [
           // blue
           PhloxAnimations(
-            duration: Duration(milliseconds: 200),
+            duration: const Duration(milliseconds: 200),
             loop: true,
             fromOpacity: 0,
             toOpacity: 1,
-            wait: Duration(seconds: 1),
+            wait: const Duration(seconds: 1),
             child: Container(
               height: height,
               width: width,
-              color: Color.fromARGB(255, 1, 92, 249),
+              color: const Color.fromARGB(255, 1, 92, 249),
             ),
           ),
           // red
           PhloxAnimations(
-            duration: Duration(milliseconds: 200),
+            duration: const Duration(milliseconds: 200),
             loop: true,
             fromOpacity: 0,
             toOpacity: 1,
-            wait: Duration(seconds: 1),
+            wait: const Duration(seconds: 1),
             child: Container(
               height: height,
               width: width,
-              color: Color.fromARGB(255, 234, 56, 43),
+              color: const Color.fromARGB(255, 234, 56, 43),
             ),
           ),
         ],
@@ -50,7 +53,7 @@ class blinker extends StatelessWidget {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            backgroundColor: Color.fromARGB(255, 132, 198, 225),
+            backgroundColor: Colors.white,
             title: const Text("Wanna Get Back Exploring"),
             content: const Text("Get back to Compass?"),
             actions: <Widget>[

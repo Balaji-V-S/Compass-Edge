@@ -17,7 +17,7 @@ class _TorchButtonState extends State<TorchButton> {
     try {
       await TorchLight.disableTorch();
     } catch (e) {
-      print(e);
+      //print(e);
     }
   }
 
@@ -25,7 +25,7 @@ class _TorchButtonState extends State<TorchButton> {
     try {
       await TorchLight.enableTorch();
     } catch (e) {
-      print(e);
+      //print(e);
     }
   }
 

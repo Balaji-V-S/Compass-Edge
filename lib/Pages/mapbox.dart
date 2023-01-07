@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:Compass_Edge/Pages/Nav_bar.dart'; //ignore unused refer latlong const value
 import 'package:Compass_Edge/Services/location_service.dart';
-import 'package:Compass_Edge/Pages/Location_screen.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:latlong2/latlong.dart';
 //import 'package:Compass_Edge/sharedPrefs.dart'; //gets value from sharedprefs....
 import 'package:google_fonts/google_fonts.dart';
@@ -53,7 +54,9 @@ class _MapBoxState extends State<MapBox> {
             ),
             Container(
                 padding: const EdgeInsets.only(right: 90, left: 10),
-                child: const Text('Locate'))
+                child: Text('Navigate',
+                    style: GoogleFonts.jost(
+                        fontSize: 20, fontWeight: FontWeight.bold)))
           ],
         ),
         centerTitle: true,
@@ -72,8 +75,8 @@ class _MapBoxState extends State<MapBox> {
           children: [
             TileLayer(
               urlTemplate:
-                  'https://api.mapbox.com/styles/v1/softrateindia/clafl63i4004h14od6kq7kwle/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic29mdHJhdGVpbmRpYSIsImEiOiJjbGFlN3NyNWMwbnp5M29xbnJoZTJzY2ltIn0.-4deai5HiP1L2mghEp7r5A',
-              additionalOptions: {
+                  'https://api.mapbox.com/styles/v1/softrateindia/clcj9767h00lr14s1gqblmxu3/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic29mdHJhdGVpbmRpYSIsImEiOiJjbGFlN3NyNWMwbnp5M29xbnJoZTJzY2ltIn0.-4deai5HiP1L2mghEp7r5A',
+              additionalOptions: const {
                 'accessToken':
                     'pk.eyJ1Ijoic29mdHJhdGVpbmRpYSIsImEiOiJjbGFlN3NyNWMwbnp5M29xbnJoZTJzY2ltIn0.-4deai5HiP1L2mghEp7r5A',
                 'id': 'mapbox.mapbox-streets-v8'
@@ -85,18 +88,46 @@ class _MapBoxState extends State<MapBox> {
                   point: LatLng(double.parse(lat!), double.parse(long!)),
                   width: 40,
                   height: 40,
-                  builder: (context) => Image.asset('assets/marker-bg.png'),
+                  builder: (context) => Image.asset('assets/livemarker.png'),
                 ),
               ],
             ),
           ],
         ),
       ),
+      floatingActionButton: SpeedDial(
+        children: [
+          SpeedDialChild(
+            child: const Icon(CupertinoIcons.globe),
+            label: 'Satellite',
+            onTap: () {
+              setState(() {});
+            },
+          ),
+          SpeedDialChild(
+            child: const Icon(Icons.add_home_work_outlined),
+            label: 'Street',
+            onTap: () {
+              setState(() {});
+            },
+          ),
+          SpeedDialChild(
+            child: const Icon(Icons.add_road),
+            label: 'Navigation',
+            onTap: () {
+              setState(() {});
+            },
+          ),
+        ],
+        child: const Icon(Icons.layers_outlined),
+      ),
     );
   }
 
   void getLocation() async {
+    // ignore: non_constant_identifier_names
     final Service = LocationService();
+    // ignore: non_constant_identifier_names
     final LocationData = await Service.getLocation();
     //
     // ignore: unnecessary_null_comparison

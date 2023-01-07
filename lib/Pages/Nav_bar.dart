@@ -1,5 +1,7 @@
 import 'dart:io';
-
+import 'package:flutter/cupertino.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:Compass_Edge/Pages/Home_screen.dart';
 import 'package:Compass_Edge/Pages/mapbox.dart';
 import 'package:Compass_Edge/Pages/Location_screen.dart';
@@ -46,16 +48,12 @@ class _NavigationDrawer extends State<NavigationDrawer> {
   Widget buildHeader(BuildContext context) => Container(
         child: Image.asset('assets/new-logo.png'),
         padding: const EdgeInsets.only(top: 10),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Colors.cyanAccent.shade100.withOpacity(.6),
-              Colors.lightBlueAccent.shade100.withOpacity(.4)
-            ],
-          ),
-        ),
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+          colors: [Color(0xded61557), Color(0xf03d4eaf)],
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+        )),
       );
 
   Widget buildMenuItems(BuildContext context) => Container(
@@ -63,8 +61,9 @@ class _NavigationDrawer extends State<NavigationDrawer> {
         child: Wrap(
           children: [
             ListTile(
-              leading: const Icon(Icons.person),
-              title: const Text('About us'),
+              leading: const Icon(CupertinoIcons.group_solid),
+              title: Text('About us',
+                  style: GoogleFonts.comfortaa(fontWeight: FontWeight.bold)),
               onTap: () async {
                 var url = 'https://softrateindia.com/';
 
@@ -80,7 +79,8 @@ class _NavigationDrawer extends State<NavigationDrawer> {
             ),
             ListTile(
               leading: const Icon(Icons.star),
-              title: const Text('Rate Us'),
+              title: Text('Rate Us',
+                  style: GoogleFonts.comfortaa(fontWeight: FontWeight.bold)),
               onTap: () {},
             ),
             const Divider(
@@ -88,7 +88,10 @@ class _NavigationDrawer extends State<NavigationDrawer> {
             ),
             ListTile(
               leading: const Icon(Icons.exit_to_app),
-              title: const Text('Exit'),
+              title: Text(
+                'Exit',
+                style: GoogleFonts.comfortaa(fontWeight: FontWeight.bold),
+              ),
               onTap: () => _onBackpressed(context),
             ),
           ],
@@ -104,8 +107,10 @@ class _NavigationDrawer extends State<NavigationDrawer> {
               height: 50,
               width: 120,
             ),
-            const Text('Softrate India'),
-            const Text('®All rights Reserved')
+            Text('Softrate India',
+                style: GoogleFonts.comfortaa(fontWeight: FontWeight.bold)),
+            Text('®All rights Reserved',
+                style: GoogleFonts.comfortaa(fontWeight: FontWeight.bold))
           ],
         ),
       );

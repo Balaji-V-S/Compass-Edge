@@ -1,3 +1,5 @@
+// ignore: file_names
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 //pages
@@ -27,8 +29,8 @@ class _NavBoxState extends State<NavBox> {
   @override
   Widget build(BuildContext context) {
     final items = <Widget>[
-      const Icon(Icons.home, color: Colors.white),
-      const Icon(Icons.pin_drop, color: Colors.white),
+      const Icon(CupertinoIcons.compass, color: Colors.white),
+      const Icon(CupertinoIcons.map_pin_ellipse, color: Colors.white),
       const Icon(Icons.map, color: Colors.white),
       const Icon(Icons.account_circle_outlined, color: Colors.white),
     ];

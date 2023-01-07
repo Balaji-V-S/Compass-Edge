@@ -1,3 +1,4 @@
+rootProject.name='compass_edge'
 include ':app'
 
 def localPropertiesFile = new File(rootProject.projectDir, "local.properties")

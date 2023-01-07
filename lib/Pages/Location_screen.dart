@@ -10,7 +10,6 @@ import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:Compass_Edge/Services/location_service.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LocationState extends StatefulWidget {
   const LocationState({Key? key}) : super(key: key);
@@ -46,7 +45,9 @@ class _LocationStateState extends State<LocationState> {
             ),
             Container(
                 padding: const EdgeInsets.only(right: 90, left: 10),
-                child: const Text('Locate'))
+                child: Text('Locate',
+                    style: GoogleFonts.jost(
+                        fontSize: 20, fontWeight: FontWeight.bold)))
           ],
         ),
         centerTitle: true,
@@ -82,19 +83,23 @@ class _LocationStateState extends State<LocationState> {
                   const SizedBox(
                     height: 20,
                   ),
-                  Text('Latitude: ${lat ?? 'Loading....'}'),
+                  Text('Latitude: ${lat ?? 'Loading....'}',
+                      style: GoogleFonts.jost(fontSize: 15)),
                   const SizedBox(
                     height: 20,
                   ),
-                  Text('Longitude: ${long ?? 'Loading....'}'),
+                  Text('Longitude: ${long ?? 'Loading....'}',
+                      style: GoogleFonts.jost(fontSize: 15)),
                   const SizedBox(
                     height: 20,
                   ),
-                  Text('Country: ${country ?? 'Loading....'}'),
+                  Text('Country: ${country ?? 'Loading....'}',
+                      style: GoogleFonts.jost(fontSize: 15)),
                   const SizedBox(
                     height: 20,
                   ),
-                  Text('State: ${state ?? 'Loading....'}'),
+                  Text('State: ${state ?? 'Loading....'}',
+                      style: GoogleFonts.jost(fontSize: 15)),
                   const SizedBox(
                     height: 20,
                   ),
@@ -107,8 +112,8 @@ class _LocationStateState extends State<LocationState> {
     );
   }
 
-  TextStyle getStyle({double size = 20}) => TextStyle(
-      fontSize: size, fontWeight: FontWeight.bold, fontFamily: 'SecularOne');
+  TextStyle getStyle({double size = 20}) =>
+      GoogleFonts.archivo(fontSize: size, fontWeight: FontWeight.bold);
 
   void getLocation() async {
     final Service = LocationService();

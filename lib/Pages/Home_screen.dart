@@ -74,16 +74,18 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(28),
                 child: Image.asset(
                   'assets/logo-png.png',
                   fit: BoxFit.contain,
-                  height: 40,
+                  scale: 10,
                 ),
               ),
               Container(
                   padding: const EdgeInsets.only(right: 90, left: 10),
-                  child: const Text('Compass Edge'))
+                  child: Text('Compass Edge',
+                      style: GoogleFonts.jost(
+                          fontSize: 20, fontWeight: FontWeight.bold)))
             ],
           ),
         ),
@@ -130,71 +132,108 @@ class _HomeScreenState extends State<HomeScreen> {
         }
 
         double? direction = snapshot.data!.heading;
-
+        //print(direction);
         // if direction is null, then device does not support this sensor
         // show error message
-        if (direction == null)
-          return const Center(
-            child: Text("Device does not have sensors !"),
-          );
-
-        int ang = (direction.round());
-        return WillPopScope(
-          child: Stack(
-            children: [
-              Container(height: 45, child: const Emergency()),
-              Container(
-                padding: const EdgeInsets.all(10),
-                alignment: Alignment.center,
-                child: Transform.rotate(
-                  angle: ((ang) * (math.pi / 180) * -1),
-                  child: Image.asset(
-                    'assets/digicom.png',
-                    scale: 0.9,
+        if (direction == 0.000) {
+          double width = MediaQuery.of(context).size.width;
+          double height = MediaQuery.of(context).size.height;
+          return WillPopScope(
+            child: Stack(
+              children: [
+                Container(height: 45, child: const Emergency()),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 125, horizontal: 60),
+                  child: Container(
+                    child: Image.asset(
+                      'assets/Compass_null.png',
+                      scale: 1.4,
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                child: Builder(builder: (context) {
-                  return Column(
-                    children: <Widget>[
-                      Expanded(child: TorchButton()),
-                    ],
-                  );
-                }),
-              ),
-              /* Container(
+                Container(
+                  child: const Center(
+                    child: Text('OOPS! Magnetometer is missing on your device'),
+                  ),
+                ),
+                Container(
+                  child: Builder(builder: (context) {
+                    return Column(
+                      children: <Widget>[
+                        const Expanded(child: TorchButton()),
+                      ],
+                    );
+                  }),
+                ),
+                /* Container(
                 margin: const EdgeInsets.only(bottom: 12),
                 //height: 52,
                 child: AdWidget(ad: _banner!),
               ),*/
-              Center(
-                child: Text(
-                  "$ang",
-                  style: const TextStyle(
-                    color: Color(0xFFEBEBEB),
-                    fontSize: 56,
+              ],
+            ),
+            onWillPop: () => _onBackpressed(context),
+          );
+        } else {
+          int ang = (direction!.round());
+          return WillPopScope(
+            child: Stack(
+              children: [
+                Container(height: 45, child: const Emergency()),
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  alignment: Alignment.center,
+                  child: Transform.rotate(
+                    angle: ((ang) * (math.pi / 180) * -1),
+                    child: Image.asset(
+                      'assets/digicom.png',
+                      scale: 0.9,
+                    ),
                   ),
                 ),
-              ),
-              Positioned(
-                // center of the screen - half the width of the rectangle
-                left: (width / 2) - ((width / 80) / 2),
-                // height - width is the non compass vertical space, half of that
-                top: (height - width) / 2,
-                child: SizedBox(
-                  width: width / 80,
-                  height: width / 10,
-                  child: Container(
-                    //color: HSLColor.fromAHSL(0.85, 0, 0, 0.05).toColor(),
-                    color: const Color.fromARGB(186, 245, 4, 4),
+                Container(
+                  child: Builder(builder: (context) {
+                    return Column(
+                      children: <Widget>[
+                        const Expanded(child: TorchButton()),
+                      ],
+                    );
+                  }),
+                ),
+                /* Container(
+                margin: const EdgeInsets.only(bottom: 12),
+                //height: 52,
+                child: AdWidget(ad: _banner!),
+              ),*/
+                Center(
+                  child: Text(
+                    "$ang",
+                    style: GoogleFonts.anton(
+                      color: const Color(0xFFEBEBEB),
+                      fontSize: 50,
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          onWillPop: () => _onBackpressed(context),
-        );
+                Positioned(
+                  // center of the screen - half the width of the rectangle
+                  left: (width / 2) - ((width / 80) / 2),
+                  // height - width is the non compass vertical space, half of that
+                  top: (height - width) / 2,
+                  child: SizedBox(
+                    width: width / 80,
+                    height: width / 10,
+                    child: Container(
+                      //color: HSLColor.fromAHSL(0.85, 0, 0, 0.05).toColor(),
+                      color: const Color.fromARGB(255, 245, 4, 4),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            onWillPop: () => _onBackpressed(context),
+          );
+        }
       },
     );
   }

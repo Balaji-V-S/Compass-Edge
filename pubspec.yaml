@@ -31,7 +31,7 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   flutter_compass: ^0.7.0
-  url_launcher: ^6.0.14
+  url_launcher: ^6.0.4
   lottie: ^1.4.3
   geocoding: ^2.0.1
   curved_navigation_bar: ^1.0.3 #for bottom navigation bar
@@ -47,6 +47,7 @@ dependencies:
   phlox_animations: ^2.1.1
   flutter_map: ^3.0.0
   latlong2: ^0.8.1
+  flutter_speed_dial: ^4.3.0
 
 flutter_icons:
   android: "launcher_icon"
@@ -107,15 +108,7 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
 fonts:
-  - family: Exo2
-    fonts:
-      - asset: assets/Fonts/Exo2-Italic-VariableFont_wght.ttf
-      - asset: assets/Fonts/Exo-VariableFont_wght.ttf
-
-      
-  - family: SecularOne
-    fonts:
-      - asset: assets/Fonts/SecularOne-regular.ttf
+  -
   # fonts:
   #   - family: Schyler
   #     fonts:

@@ -108,6 +108,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               final prefs = await SharedPreferences.getInstance();
               prefs.setBool('showHome', true);
               //to push the home screen
+              // ignore: use_build_context_synchronously
               Navigator.of(context).pushReplacement(
                   MaterialPageRoute(builder: (_) => const SplashScreen()));
             },
@@ -124,6 +125,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               final prefs = await SharedPreferences.getInstance();
               prefs.setBool('showHome', true);
               //Navigation context for on done...
+              // ignore: use_build_context_synchronously
               Navigator.of(context).pushReplacement(
                   MaterialPageRoute(builder: (context) => const NavBox()));
             }),
