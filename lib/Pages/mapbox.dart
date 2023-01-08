@@ -5,6 +5,7 @@ import 'package:compass_edge/Pages/Nav_bar.dart'; //ignore unused refer latlong 
 import 'package:compass_edge/Services/location_service.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:hotreloader/hotreloader.dart'; //hotreolader
 //import 'package:Compass_Edge/sharedPrefs.dart'; //gets value from sharedprefs....
 import 'package:google_fonts/google_fonts.dart';
 
@@ -28,7 +29,10 @@ class MapBox extends StatefulWidget {
 }
 
 class _MapBoxState extends State<MapBox> {
-  String? lat, long;
+  String? lat,
+      long,
+      style =
+          'https://api.mapbox.com/styles/v1/softrateindia/clcj9767h00lr14s1gqblmxu3/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic29mdHJhdGVpbmRpYSIsImEiOiJjbGFlN3NyNWMwbnp5M29xbnJoZTJzY2ltIn0.-4deai5HiP1L2mghEp7r5A';
 
   @override
   void initState() {
@@ -69,16 +73,16 @@ class _MapBoxState extends State<MapBox> {
       body: Container(
         child: FlutterMap(
           options: MapOptions(
-            center: LatLng(double.parse(lat!), double.parse(long!)),
-            zoom: 20.0,
-          ),
+              center: LatLng(double.parse(lat!), double.parse(long!)),
+              keepAlive: true,
+              zoom: 16.0,
+              maxZoom: 18.0),
           children: [
             TileLayer(
-              urlTemplate:
-                  'https://api.mapbox.com/styles/v1/softrateindia/clcj9767h00lr14s1gqblmxu3/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic29mdHJhdGVpbmRpYSIsImEiOiJjbGFlN3NyNWMwbnp5M29xbnJoZTJzY2ltIn0.-4deai5HiP1L2mghEp7r5A',
+              urlTemplate: '$style',
               additionalOptions: const {
                 'accessToken':
-                    'pk.eyJ1Ijoic29mdHJhdGVpbmRpYSIsImEiOiJjbGFlN3NyNWMwbnp5M29xbnJoZTJzY2ltIn0.-4deai5HiP1L2mghEp7r5A',
+                    'sk.eyJ1Ijoic29mdHJhdGVpbmRpYSIsImEiOiJjbGNtd2l6N3YwOXBtM3hxcG1lNGJkN2Q1In0.LzK7JeZGG6YB5mQpkufzag',
                 'id': 'mapbox.mapbox-streets-v8'
               },
             ),
@@ -91,6 +95,50 @@ class _MapBoxState extends State<MapBox> {
                   builder: (context) => Image.asset('assets/livemarker.png'),
                 ),
               ],
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 50),
+        child: SpeedDial(
+          icon: CupertinoIcons.layers_alt,
+          backgroundColor: Colors.black,
+          overlayColor: Colors.transparent,
+          overlayOpacity: 0.0,
+          spacing: 10,
+          children: [
+            SpeedDialChild(
+              child: Icon(CupertinoIcons.car_detailed),
+              label: 'Navigation',
+              labelStyle: GoogleFonts.comfortaa(),
+              onTap: () {
+                setState(() {
+                  style =
+                      'https://api.mapbox.com/styles/v1/softrateindia/clcj9g1hx001614o352z1qy1b/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic29mdHJhdGVpbmRpYSIsImEiOiJjbGFlN3NyNWMwbnp5M29xbnJoZTJzY2ltIn0.-4deai5HiP1L2mghEp7r5A';
+                });
+              },
+            ),
+            SpeedDialChild(
+                child: Icon(CupertinoIcons.location_fill),
+                label: 'Street',
+                labelStyle: GoogleFonts.comfortaa(),
+                onTap: () {
+                  setState(() {
+                    style =
+                        'https://api.mapbox.com/styles/v1/softrateindia/clafl63i4004h14od6kq7kwle/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic29mdHJhdGVpbmRpYSIsImEiOiJjbGFlN3NyNWMwbnp5M29xbnJoZTJzY2ltIn0.-4deai5HiP1L2mghEp7r5A';
+                  });
+                }),
+            SpeedDialChild(
+              child: Icon(CupertinoIcons.globe),
+              label: 'Satellite',
+              labelStyle: GoogleFonts.comfortaa(),
+              onTap: () {
+                setState(() {
+                  style =
+                      'https://api.mapbox.com/styles/v1/softrateindia/clcj9767h00lr14s1gqblmxu3/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic29mdHJhdGVpbmRpYSIsImEiOiJjbGFlN3NyNWMwbnp5M29xbnJoZTJzY2ltIn0.-4deai5HiP1L2mghEp7r5A';
+                });
+              },
             ),
           ],
         ),

@@ -135,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
         //print(direction);
         // if direction is null, then device does not support this sensor
         // show error message
-        if (direction == 0) {
+        if (direction == 0.000) {
           double width = MediaQuery.of(context).size.width;
           double height = MediaQuery.of(context).size.height;
           return WillPopScope(
@@ -154,12 +154,23 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Container(
                   child: Center(
-                    child: Text(
-                      'OOPS! Magnetometer is missing on your device,\n Unsupported Magnetometer and Altimeter',
-                      style: GoogleFonts.jost(fontSize: 17),
-                      textAlign: TextAlign.center,
+                      child: Padding(
+                    padding: const EdgeInsets.only(top: 310),
+                    child: Column(
+                      children: [
+                        Text(
+                          'OOPS! Magnetometer is missing on your device,\n Unsupported Magnetometer and Altimeter',
+                          style: GoogleFonts.jost(
+                              fontSize: 17, fontWeight: FontWeight.w600),
+                          textAlign: TextAlign.center,
+                        ),
+                        Icon(
+                          CupertinoIcons.compass,
+                          size: 40,
+                        )
+                      ],
                     ),
-                  ),
+                  )),
                 ),
                 Container(
                   child: Builder(builder: (context) {
@@ -247,20 +258,32 @@ class _HomeScreenState extends State<HomeScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: const Text("Really?"),
-            content: const Text("Do you want to exit the App?"),
+            title: Text(
+              "Really?",
+              style: GoogleFonts.jost(),
+            ),
+            content: Text(
+              "Do you want to exit the App?",
+              style: GoogleFonts.jost(),
+            ),
             actions: <Widget>[
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop(true);
                 },
-                child: const Text("Yes"),
+                child: Text(
+                  "Yes",
+                  style: GoogleFonts.jost(color: Colors.black),
+                ),
               ),
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop(false);
                 },
-                child: const Text("No"),
+                child: Text(
+                  "No",
+                  style: GoogleFonts.jost(color: Colors.black),
+                ),
               )
             ],
           );

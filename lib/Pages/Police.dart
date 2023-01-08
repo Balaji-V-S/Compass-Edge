@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:compass_edge/Nav_layer.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:phlox_animations/phlox_animations.dart';
 
 class blinker extends StatelessWidget {
@@ -54,8 +55,11 @@ class blinker extends StatelessWidget {
         builder: (BuildContext context) {
           return AlertDialog(
             backgroundColor: Colors.white,
-            title: const Text("Wanna Get Back Exploring"),
-            content: const Text("Get back to Compass?"),
+            title: Text(
+              "Wanna Get Back Exploring",
+              style: GoogleFonts.jost(),
+            ),
+            content: Text("Get back to Compass?", style: GoogleFonts.jost()),
             actions: <Widget>[
               TextButton(
                 onPressed: () {

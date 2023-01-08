@@ -8,7 +8,7 @@ class Emergency extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: GestureDetector(
-        onDoubleTap: () {
+        onTap: () {
           Navigator.pop(context);
 
           Navigator.of(context)
