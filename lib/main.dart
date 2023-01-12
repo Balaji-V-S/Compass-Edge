@@ -67,7 +67,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               ),
               PageViewModel(
                 title: 'Simple UI',
-                body: 'Made simple,yet robust !!',
+                body: 'Made simple, yet robust !!',
                 image: buildImage('assets/Animations/uiux-design.json'),
                 decoration: getPageDecoration(),
               ),

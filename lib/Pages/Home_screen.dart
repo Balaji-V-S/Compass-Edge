@@ -6,11 +6,11 @@ import 'package:flutter_compass/flutter_compass.dart';
 import 'dart:math' as math; // to calculate pi val
 
 import 'package:cupertino_icons/cupertino_icons.dart';
-import 'package:compass_edge/Pages/Police.dart';
+//import 'package:compass_edge/Pages/Police.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-//import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:url_launcher/url_launcher.dart';
 //Pages
 import 'package:compass_edge/Pages/Location_screen.dart';
@@ -31,16 +31,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // BannerAd? _banner;
-  //InterstitialAd? _interstitialAd;
+  BannerAd? _banner;
+  InterstitialAd? _interstitialAd;
 
   @override
-  /*void initState() {
+  void initState() {
     super.initState();
 
     _createBannerAd();
 
-    _CreateInterstitialAd();
+    //_CreateInterstitialAd();
   }
 
   void _createBannerAd() {
@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
     )..load();
   }
 
-  void _CreateInterstitialAd() {
+  /*void _CreateInterstitialAd() {
     InterstitialAd.load(
         adUnitId: AdMobService.interstitialAdUnitId!,
         request: const AdRequest(),
@@ -60,8 +60,8 @@ class _HomeScreenState extends State<HomeScreen> {
           onAdLoaded: (ad) => _interstitialAd = ad,
           onAdFailedToLoad: (LoadAdError error) => _interstitialAd = null,
         ));
-  }
-*/
+  }*/
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -143,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Container(height: 45, child: const Emergency()),
                 Padding(
-                  padding: const EdgeInsets.only(top: 0100),
+                  padding: const EdgeInsets.only(top: 160),
                   child: Container(
                     alignment: Alignment.topCenter,
                     child: Image.asset(
@@ -155,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Container(
                   child: Center(
                       child: Padding(
-                    padding: const EdgeInsets.only(top: 310),
+                    padding: const EdgeInsets.only(top: 370),
                     child: Column(
                       children: [
                         Text(
@@ -181,14 +181,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   }),
                 ),
-                /* Container(
-                margin: const EdgeInsets.only(bottom: 12),
-                //height: 52,
-                child: AdWidget(ad: _banner!),
-              ),*/
               ],
             ),
-            onWillPop: () => _onBackpressed(context),
+            onWillPop: () => _onbackpressed(context),
           );
         } else {
           int ang = (direction!.round());
@@ -216,11 +211,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   }),
                 ),
-                /* Container(
-                margin: const EdgeInsets.only(bottom: 12),
-                //height: 52,
-                child: AdWidget(ad: _banner!),
-              ),*/
+                Container(
+                  //margin: const EdgeInsets.only(top: 0),
+                  height: 75,
+                  width: width,
+                  child: AdWidget(ad: _banner!),
+                ),
                 Center(
                   child: Text(
                     "$ang",
@@ -246,14 +242,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-            onWillPop: () => _onBackpressed(context),
+            onWillPop: () => _onbackpressed(context),
           );
         }
       },
     );
   }
 
-  Future<bool> _onBackpressed(BuildContext context) async {
+  Future<bool> _onbackpressed(BuildContext context) async {
     bool? exitApp = await showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -269,7 +265,7 @@ class _HomeScreenState extends State<HomeScreen> {
             actions: <Widget>[
               TextButton(
                 onPressed: () {
-                  Navigator.of(context).pop(true);
+                  Navigator.pop(context, true);
                 },
                 child: Text(
                   "Yes",

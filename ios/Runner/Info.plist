@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 	<dict>
+		<key>LSApplicationQueriesSchemes</key>
+		<array>
+    	<string>itms</string>
+		</array>
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleDisplayName</key>
@@ -52,7 +56,7 @@
 		<key>UIStatusBarHidden</key>
 		<false/>
 		<key>GADApplicationIdentifier</key>
-		<string>ca-app-pub-6556402405172089~9236052187</string>	
+		<string>ca-app-pub-6556402405172089~8269373302</string>	
 
 	</dict>
 </plist>

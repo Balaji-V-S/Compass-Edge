@@ -5,6 +5,8 @@ import 'package:compass_edge/Pages/Home_screen.dart';
 import 'package:compass_edge/Pages/mapbox.dart';
 import 'package:geocoding/geocoding.dart';
 //services
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:compass_edge/Services/Admobclass.dart';
 import 'dart:developer';
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
@@ -20,11 +22,38 @@ class LocationState extends StatefulWidget {
 
 class _LocationStateState extends State<LocationState> {
   String? lat, long, country, state;
+  InterstitialAd? _interstitialAd;
+  BannerAd? _banner;
 
   @override
   void initState() {
     super.initState();
-    getLocation();
+
+    _CreateInterstitialAd();
+    _createBannerAd();
+    //getLocation();
+    _showInterstitialAd();
+  }
+
+  void _createBannerAd() {
+    _banner = BannerAd(
+      size: AdSize.fullBanner,
+      adUnitId: AdMobService.bannerAdUnitId!,
+      listener: AdMobService.bannerListener,
+      request: const AdRequest(),
+    )..load();
+  }
+
+  @override
+  void _CreateInterstitialAd() {
+    InterstitialAd.load(
+        adUnitId: AdMobService.interstitialAdUnitId!,
+        request: const AdRequest(),
+        adLoadCallback: InterstitialAdLoadCallback(
+          onAdLoaded: (ad) => _interstitialAd = ad,
+          onAdFailedToLoad: (LoadAdError error) => _interstitialAd = null,
+        ));
+    _showInterstitialAd();
   }
 
   @override
@@ -63,7 +92,6 @@ class _LocationStateState extends State<LocationState> {
           child: Stack(
             children: [
               const Positioned.fill(
-                //
                 child: Image(
                   image: AssetImage('assets/location-bg.png'),
                   opacity: AlwaysStoppedAnimation(.4),
@@ -74,35 +102,47 @@ class _LocationStateState extends State<LocationState> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 40, left: 40),
-                    child: Lottie.asset('assets/Animations/globe.json'),
+                  Container(
+                    //margin: const EdgeInsets.only(top: 1),
+                    height: 52,
+                    child: AdWidget(ad: _banner!),
+                  ),
+                  Container(
+                    child: Lottie.asset('assets/Animations/globe.json',
+                        height: 250, width: 250),
                   ),
                   const SizedBox(height: 2),
                   Text('Location Info', style: getStyle(size: 24)),
                   const SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                   Text('Latitude: ${lat ?? 'Loading....'}',
                       style: GoogleFonts.jost(fontSize: 15)),
                   const SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                   Text('Longitude: ${long ?? 'Loading....'}',
                       style: GoogleFonts.jost(fontSize: 15)),
                   const SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                   Text('Country: ${country ?? 'Loading....'}',
                       style: GoogleFonts.jost(fontSize: 15)),
                   const SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                   Text('State: ${state ?? 'Loading....'}',
                       style: GoogleFonts.jost(fontSize: 15)),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        getLocation();
+                        _showInterstitialAd();
+                      },
+                      child: Text(
+                        "Get Location",
+                        style:
+                            GoogleFonts.jost(fontSize: 15, color: Colors.white),
+                      )),
                 ],
               ),
             ],
@@ -129,6 +169,20 @@ class _LocationStateState extends State<LocationState> {
         country = Placemark?.country ?? 'Could not get country';
         state = Placemark?.administrativeArea ?? 'Could not get State';
       });
+    }
+  }
+
+  void _showInterstitialAd() {
+    if (_interstitialAd != null) {
+      _interstitialAd!.fullScreenContentCallback =
+          FullScreenContentCallback(onAdDismissedFullScreenContent: (ad) {
+        ad.dispose();
+      }, onAdFailedToShowFullScreenContent: (ad, error) {
+        ad.dispose();
+        _CreateInterstitialAd();
+      });
+      _interstitialAd!.show();
+      _interstitialAd = null;
     }
   }
 }
