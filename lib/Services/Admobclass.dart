@@ -25,16 +25,6 @@ class AdMobService {
     return null;
   }
 
-  static String? get rewardedAdUnitId {
-    if (Platform.isAndroid) {
-      return 'ca-app-pub-6556402405172089/3085935597';
-    } else if (Platform.isIOS) {
-      return 'ca-app-pub-6556402405172089/5793620296';
-    }
-
-    return null;
-  }
-
   static final BannerAdListener bannerListener = BannerAdListener(
     onAdLoaded: (ad) => debugPrint('Ad loaded.'),
     onAdFailedToLoad: (ad, error) {

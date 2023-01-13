@@ -44,42 +44,41 @@ class blinker extends StatelessWidget {
           ),
         ],
       ),
-      onWillPop: () => _OnBackPressed(context),
+      onWillPop: () => _onbackpressed(context),
     );
   }
 
   ////////////-------------------------back to home button Code-----------------/////////////
-  Future<bool> _OnBackPressed(BuildContext context) async {
+  Future<bool> _onbackpressed(BuildContext context) async {
     bool? exitApp = await showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            backgroundColor: Colors.white,
             title: Text(
-              "Wanna Get Back Exploring",
+              "Really?",
               style: GoogleFonts.jost(),
             ),
-            content: Text("Get back to Compass?", style: GoogleFonts.jost()),
+            content: Text(
+              "Do you want to exit the App?",
+              style: GoogleFonts.jost(),
+            ),
             actions: <Widget>[
               TextButton(
                 onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => const NavBox()),
-                  );
+                  Navigator.pop(context, true);
                 },
-                child: const Text(
+                child: Text(
                   "Yes",
-                  style: TextStyle(color: Colors.black),
+                  style: GoogleFonts.jost(color: Colors.black),
                 ),
               ),
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop(false);
                 },
-                child: const Text(
+                child: Text(
                   "No",
-                  style: TextStyle(color: Colors.black),
+                  style: GoogleFonts.jost(color: Colors.black),
                 ),
               )
             ],

@@ -32,7 +32,7 @@ class MapBox extends StatefulWidget {
 }
 
 class _MapBoxState extends State<MapBox> {
-  RewardedAd? _rewardedAd;
+  InterstitialAd? _interstitialAd;
   String? lat, long;
   String? style =
       'https://api.mapbox.com/styles/v1/softrateindia/clcj9767h00lr14s1gqblmxu3/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic29mdHJhdGVpbmRpYSIsImEiOiJjbGFlN3NyNWMwbnp5M29xbnJoZTJzY2ltIn0.-4deai5HiP1L2mghEp7r5A';
@@ -41,141 +41,145 @@ class _MapBoxState extends State<MapBox> {
   void initState() {
     super.initState();
     getLocation();
-    _createRewardedAd();
+    _CreateInterstitialAd();
   }
 
-  void _createRewardedAd() {
-    RewardedAd.load(
-      adUnitId: AdMobService.rewardedAdUnitId!,
-      request: const AdRequest(),
-      rewardedAdLoadCallback: RewardedAdLoadCallback(
-        onAdLoaded: (ad) => setState(() => _rewardedAd = ad),
-        onAdFailedToLoad: (error) => setState(() => _rewardedAd = null),
-      ),
-    );
+  void _CreateInterstitialAd() {
+    InterstitialAd.load(
+        adUnitId: AdMobService.interstitialAdUnitId!,
+        request: const AdRequest(),
+        adLoadCallback: InterstitialAdLoadCallback(
+          onAdLoaded: (ad) => _interstitialAd = ad,
+          onAdFailedToLoad: (LoadAdError error) => _interstitialAd = null,
+        ));
+    _showInterstitialAd();
   }
 
-  void _ShowRewardedAd() {
-    if (_rewardedAd != null) {
-      _rewardedAd!.fullScreenContentCallback =
+  void _showInterstitialAd() {
+    if (_interstitialAd != null) {
+      _interstitialAd!.fullScreenContentCallback =
           FullScreenContentCallback(onAdDismissedFullScreenContent: (ad) {
         ad.dispose();
-        _createRewardedAd();
       }, onAdFailedToShowFullScreenContent: (ad, error) {
         ad.dispose();
-        _createRewardedAd();
+        _CreateInterstitialAd();
       });
-      _rewardedAd == null;
+      _interstitialAd!.show();
+      _interstitialAd = null;
+      _CreateInterstitialAd();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.grey.shade900,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
-                'assets/AppBar/locate.png',
-                fit: BoxFit.contain,
-                height: 35,
-              ),
+    return WillPopScope(
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.grey.shade900,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.asset(
+                    'assets/AppBar/locate.png',
+                    fit: BoxFit.contain,
+                    height: 35,
+                  ),
+                ),
+                Container(
+                    padding: const EdgeInsets.only(right: 90, left: 10),
+                    child: Text('Navigate',
+                        style: GoogleFonts.jost(
+                            fontSize: 20, fontWeight: FontWeight.bold)))
+              ],
             ),
-            Container(
-                padding: const EdgeInsets.only(right: 90, left: 10),
-                child: Text('Navigate',
-                    style: GoogleFonts.jost(
-                        fontSize: 20, fontWeight: FontWeight.bold)))
-          ],
-        ),
-        centerTitle: true,
-        titleTextStyle: const TextStyle(
-            color: Color.fromARGB(255, 254, 252, 252),
-            fontSize: 16,
-            fontWeight: FontWeight.bold),
-      ),
-      drawer: const NavigationDrawer(),
-      body: Container(
-        child: FlutterMap(
-          options: MapOptions(
-              center: LatLng(double.parse(lat!), double.parse(long!)),
-              keepAlive: true,
-              zoom: 16.0,
-              maxZoom: 18.0),
-          children: [
-            TileLayer(
-              urlTemplate: '$style',
-              additionalOptions: const {
-                'accessToken':
-                    'sk.eyJ1Ijoic29mdHJhdGVpbmRpYSIsImEiOiJjbGNtd2l6N3YwOXBtM3hxcG1lNGJkN2Q1In0.LzK7JeZGG6YB5mQpkufzag',
-                'id': 'mapbox.mapbox-streets-v8'
-              },
-            ),
-            MarkerLayer(
-              markers: [
-                Marker(
-                  point: LatLng(double.parse(lat!), double.parse(long!)),
-                  width: 40,
-                  height: 40,
-                  builder: (context) => Image.asset('assets/livemarker.png'),
+            centerTitle: true,
+            titleTextStyle: const TextStyle(
+                color: Color.fromARGB(255, 254, 252, 252),
+                fontSize: 16,
+                fontWeight: FontWeight.bold),
+          ),
+          drawer: const NavigationDrawer(),
+          body: Container(
+            child: FlutterMap(
+              options: MapOptions(
+                  center: LatLng(double.parse(lat!), double.parse(long!)),
+                  keepAlive: true,
+                  zoom: 16.0,
+                  maxZoom: 18.0),
+              children: [
+                TileLayer(
+                  urlTemplate: '$style',
+                  additionalOptions: const {
+                    'accessToken':
+                        'sk.eyJ1Ijoic29mdHJhdGVpbmRpYSIsImEiOiJjbGNtd2l6N3YwOXBtM3hxcG1lNGJkN2Q1In0.LzK7JeZGG6YB5mQpkufzag',
+                    'id': 'mapbox.mapbox-streets-v8'
+                  },
+                ),
+                MarkerLayer(
+                  markers: [
+                    Marker(
+                      point: LatLng(double.parse(lat!), double.parse(long!)),
+                      width: 40,
+                      height: 40,
+                      builder: (context) =>
+                          Image.asset('assets/livemarker.png'),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
-      ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 50),
-        child: SpeedDial(
-          icon: CupertinoIcons.layers_alt,
-          backgroundColor: Colors.black,
-          overlayColor: Colors.transparent,
-          overlayOpacity: 0.0,
-          spacing: 10,
-          children: [
-            SpeedDialChild(
-              child: Icon(CupertinoIcons.car_detailed),
-              label: 'Navigation',
-              labelStyle: GoogleFonts.comfortaa(),
-              onTap: () {
-                _ShowRewardedAd();
-                setState(() {
-                  style =
-                      'https://api.mapbox.com/styles/v1/softrateindia/clcj9g1hx001614o352z1qy1b/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic29mdHJhdGVpbmRpYSIsImEiOiJjbGFlN3NyNWMwbnp5M29xbnJoZTJzY2ltIn0.-4deai5HiP1L2mghEp7r5A';
-                });
-              },
+          ),
+          floatingActionButton: Padding(
+            padding: const EdgeInsets.only(bottom: 50),
+            child: SpeedDial(
+              icon: CupertinoIcons.layers_alt,
+              backgroundColor: Colors.black,
+              overlayColor: Colors.transparent,
+              overlayOpacity: 0.0,
+              spacing: 10,
+              children: [
+                SpeedDialChild(
+                  child: Icon(CupertinoIcons.car_detailed),
+                  label: 'Navigation',
+                  labelStyle: GoogleFonts.comfortaa(),
+                  onTap: () {
+                    _showInterstitialAd();
+                    setState(() {
+                      style =
+                          'https://api.mapbox.com/styles/v1/softrateindia/clcj9g1hx001614o352z1qy1b/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic29mdHJhdGVpbmRpYSIsImEiOiJjbGFlN3NyNWMwbnp5M29xbnJoZTJzY2ltIn0.-4deai5HiP1L2mghEp7r5A';
+                    });
+                  },
+                ),
+                SpeedDialChild(
+                    child: Icon(CupertinoIcons.location_fill),
+                    label: 'Street',
+                    labelStyle: GoogleFonts.comfortaa(),
+                    onTap: () {
+                      _showInterstitialAd();
+                      setState(() {
+                        style =
+                            'https://api.mapbox.com/styles/v1/softrateindia/clafl63i4004h14od6kq7kwle/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic29mdHJhdGVpbmRpYSIsImEiOiJjbGFlN3NyNWMwbnp5M29xbnJoZTJzY2ltIn0.-4deai5HiP1L2mghEp7r5A';
+                      });
+                    }),
+                SpeedDialChild(
+                  child: Icon(CupertinoIcons.globe),
+                  label: 'Satellite',
+                  labelStyle: GoogleFonts.comfortaa(),
+                  onTap: () {
+                    _showInterstitialAd();
+                    setState(() {
+                      style =
+                          'https://api.mapbox.com/styles/v1/softrateindia/clcj9767h00lr14s1gqblmxu3/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic29mdHJhdGVpbmRpYSIsImEiOiJjbGFlN3NyNWMwbnp5M29xbnJoZTJzY2ltIn0.-4deai5HiP1L2mghEp7r5A';
+                    });
+                  },
+                ),
+              ],
             ),
-            SpeedDialChild(
-                child: Icon(CupertinoIcons.location_fill),
-                label: 'Street',
-                labelStyle: GoogleFonts.comfortaa(),
-                onTap: () {
-                  _ShowRewardedAd();
-                  setState(() {
-                    style =
-                        'https://api.mapbox.com/styles/v1/softrateindia/clafl63i4004h14od6kq7kwle/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic29mdHJhdGVpbmRpYSIsImEiOiJjbGFlN3NyNWMwbnp5M29xbnJoZTJzY2ltIn0.-4deai5HiP1L2mghEp7r5A';
-                  });
-                }),
-            SpeedDialChild(
-              child: Icon(CupertinoIcons.globe),
-              label: 'Satellite',
-              labelStyle: GoogleFonts.comfortaa(),
-              onTap: () {
-                setState(() {
-                  _ShowRewardedAd();
-                  style =
-                      'https://api.mapbox.com/styles/v1/softrateindia/clcj9767h00lr14s1gqblmxu3/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic29mdHJhdGVpbmRpYSIsImEiOiJjbGFlN3NyNWMwbnp5M29xbnJoZTJzY2ltIn0.-4deai5HiP1L2mghEp7r5A';
-                });
-              },
-            ),
-          ],
+          ),
         ),
-      ),
-    );
+        onWillPop: () => _onbackpressed(context));
   }
 
   void getLocation() async {
@@ -193,5 +197,44 @@ class _MapBoxState extends State<MapBox> {
         long = LocationData.longitude!.toStringAsFixed(7);
       });
     }
+  }
+
+  ///////////////////////----------------exit-app---------------------------/////////////////////////
+  Future<bool> _onbackpressed(BuildContext context) async {
+    bool? exitApp = await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              "Really?",
+              style: GoogleFonts.jost(),
+            ),
+            content: Text(
+              "Do you want to exit the App?",
+              style: GoogleFonts.jost(),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context, true);
+                },
+                child: Text(
+                  "Yes",
+                  style: GoogleFonts.jost(color: Colors.black),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(false);
+                },
+                child: Text(
+                  "No",
+                  style: GoogleFonts.jost(color: Colors.black),
+                ),
+              )
+            ],
+          );
+        });
+    return exitApp ?? false;
   }
 }

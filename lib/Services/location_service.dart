@@ -1,7 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:location/location.dart';
 import 'package:geocoding/geocoding.dart' as goa;
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LocationService {
   late Location _location;

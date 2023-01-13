@@ -1,8 +1,9 @@
 // ignore: file_names
+import 'package:compass_edge/Pages/Police.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 //pages
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:compass_edge/Pages/Home_screen.dart';
 import 'package:compass_edge/Pages/Location_screen.dart';
 import 'package:compass_edge/Pages/mapbox.dart';
@@ -23,6 +24,7 @@ class _NavBoxState extends State<NavBox> {
     const HomeScreen(),
     const LocationState(),
     const MapScreen(),
+    const blinker(),
     const Infopage(),
   ];
 
@@ -32,6 +34,7 @@ class _NavBoxState extends State<NavBox> {
       const Icon(CupertinoIcons.compass, color: Colors.white),
       const Icon(CupertinoIcons.map_pin_ellipse, color: Colors.white),
       const Icon(Icons.map, color: Colors.white),
+      const Icon(Icons.sos, color: Colors.white),
       const Icon(Icons.account_circle_outlined, color: Colors.white),
     ];
     return Scaffold(

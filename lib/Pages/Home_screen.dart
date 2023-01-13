@@ -4,18 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_compass/flutter_compass.dart';
 import 'dart:math' as math; // to calculate pi val
-
-import 'package:cupertino_icons/cupertino_icons.dart';
-//import 'package:compass_edge/Pages/Police.dart';
-import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-
-import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:url_launcher/url_launcher.dart';
 //Pages
-import 'package:compass_edge/Pages/Location_screen.dart';
-import 'package:compass_edge/Services/Admobclass.dart';
-import 'package:compass_edge/Pages/mapbox.dart';
 import 'package:compass_edge/Pages/torch.dart';
 import 'package:compass_edge/Pages/Nav_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,36 +21,32 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  BannerAd? _banner;
+  late BannerAd _banner;
   InterstitialAd? _interstitialAd;
+  bool _isAdLoaded = false;
 
   @override
   void initState() {
     super.initState();
-
     _createBannerAd();
-
-    //_CreateInterstitialAd();
   }
 
   void _createBannerAd() {
     _banner = BannerAd(
       size: AdSize.fullBanner,
       adUnitId: AdMobService.bannerAdUnitId!,
-      listener: AdMobService.bannerListener,
+      listener: BannerAdListener(onAdLoaded: (ad) {
+        setState(() {
+          _isAdLoaded = true;
+        });
+      }, onAdFailedToLoad: (ad, error) {
+        ad.dispose();
+      }),
       request: const AdRequest(),
-    )..load();
-  }
+    );
 
-  /*void _CreateInterstitialAd() {
-    InterstitialAd.load(
-        adUnitId: AdMobService.interstitialAdUnitId!,
-        request: const AdRequest(),
-        adLoadCallback: InterstitialAdLoadCallback(
-          onAdLoaded: (ad) => _interstitialAd = ad,
-          onAdFailedToLoad: (LoadAdError error) => _interstitialAd = null,
-        ));
-  }*/
+    _banner.load();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -133,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
         double? direction = snapshot.data!.heading;
         //print(direction);
-        // if direction is null, then device does not support this sensor
+        // if direction is 0.000, then device does not support this sensor
         // show error message
         if (direction == 0.000) {
           double width = MediaQuery.of(context).size.width;
@@ -141,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
           return WillPopScope(
             child: Stack(
               children: [
-                Container(height: 45, child: const Emergency()),
+                //Container(height: 45, child: const Emergency()),
                 Padding(
                   padding: const EdgeInsets.only(top: 160),
                   child: Container(
@@ -181,6 +167,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   }),
                 ),
+                Positioned(
+                  bottom: 55,
+                  child: Container(
+                    height: 52,
+                    child: AdWidget(ad: _banner),
+                  ),
+                ),
               ],
             ),
             onWillPop: () => _onbackpressed(context),
@@ -190,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
           return WillPopScope(
             child: Stack(
               children: [
-                Container(height: 45, child: const Emergency()),
+                //Container(height: 45, child: const Emergency()),
                 Container(
                   padding: const EdgeInsets.all(10),
                   alignment: Alignment.center,
@@ -211,12 +204,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   }),
                 ),
-                Container(
-                  //margin: const EdgeInsets.only(top: 0),
-                  height: 75,
-                  width: width,
-                  child: AdWidget(ad: _banner!),
-                ),
                 Center(
                   child: Text(
                     "$ang",
@@ -226,18 +213,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 55),
+                  child: Container(
+                    height: 52,
+                    child: AdWidget(ad: _banner),
+                  ),
+                ),
                 Positioned(
-                  // center of the screen - half the width of the rectangle
-                  left: (width / 2) - ((width / 80) / 2),
-                  // height - width is the non compass vertical space, half of that
-                  top: (height - width) / 2,
-                  child: SizedBox(
-                    width: width / 80,
-                    height: width / 10,
-                    child: Container(
-                      //color: HSLColor.fromAHSL(0.85, 0, 0, 0.05).toColor(),
-                      color: const Color.fromARGB(255, 245, 4, 4),
-                    ),
+                  bottom: 55,
+                  child: Container(
+                    height: 52,
+                    child: AdWidget(ad: _banner),
                   ),
                 ),
               ],

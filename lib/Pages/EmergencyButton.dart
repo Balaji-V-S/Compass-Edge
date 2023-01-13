@@ -1,38 +1,38 @@
-import 'package:flutter/material.dart';
-import 'package:compass_edge/Pages/Police.dart';
+// import 'package:flutter/material.dart';
+// import 'package:compass_edge/Pages/Police.dart';
 
-class Emergency extends StatelessWidget {
-  const Emergency({Key? key}) : super(key: key);
+// class Emergency extends StatelessWidget {
+//   const Emergency({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: GestureDetector(
-        onTap: () {
-          Navigator.pop(context);
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       child: GestureDetector(
+//         onTap: () {
+//           Navigator.pop(context);
 
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => const blinker()));
-        },
-        child: Center(
-          child: Container(
-            child: Column(
-              children: [
-                Image.asset(
-                  'assets/police-light.png',
-                  height: 29,
-                  width: 70,
-                ),
-                Text(
-                  'EMERGENCY',
-                  style: TextStyle(
-                      color: Colors.grey[300], fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
+//           Navigator.of(context)
+//               .push(MaterialPageRoute(builder: (context) => const blinker()));
+//         },
+//         child: Center(
+//           child: Container(
+//             child: Column(
+//               children: [
+                // Image.asset(
+                //   'assets/police-light.png',
+                //   height: 29,
+                //   width: 70,
+                // ),
+//                 Text(
+//                   'EMERGENCY',
+//                   style: TextStyle(
+//                       color: Colors.grey[300], fontWeight: FontWeight.bold),
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
