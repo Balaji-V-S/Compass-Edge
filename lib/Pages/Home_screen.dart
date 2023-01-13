@@ -60,9 +60,9 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(28),
+                borderRadius: BorderRadius.circular(25),
                 child: Image.asset(
-                  'assets/logo-png.png',
+                  'assets/logo-png-circle.png',
                   fit: BoxFit.contain,
                   scale: 10,
                 ),
