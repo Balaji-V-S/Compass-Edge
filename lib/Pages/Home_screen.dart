@@ -50,6 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -94,6 +95,13 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             );
           }),
+        ),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.only(bottom: 56),
+          child: Container(
+            height: 52,
+            child: AdWidget(ad: _banner),
+          ),
         ),
       ),
     );
@@ -167,13 +175,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   }),
                 ),
-                Positioned(
-                  bottom: 55,
-                  child: Container(
-                    height: 52,
-                    child: AdWidget(ad: _banner),
-                  ),
-                ),
+                // Positioned(
+                //   bottom: 55,
+                //   child: Container(
+                //     height: 52,
+                //     child: AdWidget(ad: _banner),
+                //   ),
+                // ),
               ],
             ),
             onWillPop: () => _onbackpressed(context),
@@ -213,20 +221,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 55),
-                  child: Container(
-                    height: 52,
-                    child: AdWidget(ad: _banner),
-                  ),
-                ),
-                Positioned(
-                  bottom: 55,
-                  child: Container(
-                    height: 52,
-                    child: AdWidget(ad: _banner),
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(bottom: 55),
+                //   child: Container(
+                //     height: 52,
+                //     child: AdWidget(ad: _banner),
+                //   ),
+                // ),
               ],
             ),
             onWillPop: () => _onbackpressed(context),
