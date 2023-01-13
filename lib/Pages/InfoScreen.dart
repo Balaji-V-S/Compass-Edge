@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class Infopage extends StatelessWidget {
   const Infopage({Key? key}) : super(key: key);
-
+//--check git
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
