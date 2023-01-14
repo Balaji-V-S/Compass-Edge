@@ -146,10 +146,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
+                const SizedBox(height: 10),
                 Container(
                   child: Center(
                       child: Padding(
-                    padding: const EdgeInsets.only(top: 370),
+                    padding: const EdgeInsets.only(top: 350),
                     child: Column(
                       children: [
                         Text(
@@ -166,6 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   )),
                 ),
+                const SizedBox(height: 10),
                 Container(
                   child: Builder(builder: (context) {
                     return Column(
@@ -203,6 +205,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
+                const SizedBox(height: 20),
                 Container(
                   child: Builder(builder: (context) {
                     return Column(
