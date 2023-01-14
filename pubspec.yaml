@@ -47,7 +47,7 @@ dependencies:
   flutter_map: ^3.0.0
   latlong2: ^0.8.1
   flutter_speed_dial: ^4.3.0 #multiple map layers
-  rate_my_app: ^1.1.3 #in-app rating
+  store_redirect: ^2.0.1
 
 
    

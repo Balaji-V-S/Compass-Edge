@@ -5,6 +5,7 @@ import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 //import 'package:flutter/services.dart';
+import 'package:store_redirect/store_redirect.dart';
 
 class NavigationDrawer extends StatefulWidget {
   const NavigationDrawer({Key? key}) : super(key: key);
@@ -78,7 +79,11 @@ class _NavigationDrawer extends State<NavigationDrawer> {
               leading: const Icon(Icons.star),
               title: Text('Rate Us',
                   style: GoogleFonts.comfortaa(fontWeight: FontWeight.bold)),
-              onTap: () {},
+              onTap: () {
+                //store redirect
+                StoreRedirect.redirect(
+                    androidAppId: 'com.softrate.compassedge');
+              },
             ),
             const Divider(
               color: Color.fromARGB(255, 15, 9, 9),
