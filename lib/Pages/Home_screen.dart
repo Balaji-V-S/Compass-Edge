@@ -137,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 //Container(height: 45, child: const Emergency()),
                 Padding(
-                  padding: const EdgeInsets.only(top: 160),
+                  padding: const EdgeInsets.only(top: 50),
                   child: Container(
                     alignment: Alignment.topCenter,
                     child: Image.asset(
@@ -150,13 +150,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 Container(
                   child: Center(
                       child: Padding(
-                    padding: const EdgeInsets.only(top: 350),
+                    padding: const EdgeInsets.only(top: 270),
                     child: Column(
                       children: [
                         Text(
                           'OOPS! Magnetometer is missing on your device,\n Unsupported Magnetometer and Altimeter',
                           style: GoogleFonts.jost(
-                              fontSize: 17, fontWeight: FontWeight.w600),
+                              fontSize: 16, fontWeight: FontWeight.w600),
                           textAlign: TextAlign.center,
                         ),
                         Icon(

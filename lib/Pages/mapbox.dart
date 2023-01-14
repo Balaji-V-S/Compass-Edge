@@ -33,7 +33,7 @@ class MapBox extends StatefulWidget {
 
 class _MapBoxState extends State<MapBox> {
   InterstitialAd? _interstitialAd;
-  String? lat, long;
+  String? lat, long, AdId = 'ca-app-pub-6556402405172089/6954783405';
   String? style =
       'https://api.mapbox.com/styles/v1/softrateindia/clcj9767h00lr14s1gqblmxu3/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic29mdHJhdGVpbmRpYSIsImEiOiJjbGFlN3NyNWMwbnp5M29xbnJoZTJzY2ltIn0.-4deai5HiP1L2mghEp7r5A';
 
@@ -46,7 +46,7 @@ class _MapBoxState extends State<MapBox> {
 
   void _CreateInterstitialAd() {
     InterstitialAd.load(
-        adUnitId: AdMobService.interstitialAdUnitId!,
+        adUnitId: AdId!,
         request: const AdRequest(),
         adLoadCallback: InterstitialAdLoadCallback(
           onAdLoaded: (ad) => _interstitialAd = ad,
