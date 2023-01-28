@@ -106,7 +106,7 @@ class _LocationStateState extends State<LocationState> {
                 fontSize: 16,
                 fontWeight: FontWeight.bold),
           ),
-          drawer: const NavigationDrawer(),
+          drawer: const NavDrawer(),
           body: Center(
             child: Container(
               decoration: const BoxDecoration(),

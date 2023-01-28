@@ -7,14 +7,14 @@ import 'package:url_launcher/url_launcher.dart';
 //import 'package:flutter/services.dart';
 import 'package:store_redirect/store_redirect.dart';
 
-class NavigationDrawer extends StatefulWidget {
-  const NavigationDrawer({Key? key}) : super(key: key);
+class NavDrawer extends StatefulWidget {
+  const NavDrawer({Key? key}) : super(key: key);
 
   @override
-  State<NavigationDrawer> createState() => _NavigationDrawer();
+  State<NavDrawer> createState() => _NavDrawer();
 }
 
-class _NavigationDrawer extends State<NavigationDrawer> {
+class _NavDrawer extends State<NavDrawer> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(

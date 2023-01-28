@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-        drawer: const NavigationDrawer(),
+        drawer: const NavDrawer(),
         body: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
