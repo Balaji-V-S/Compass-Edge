@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/services.dart';
 import 'package:location/location.dart';
 import 'package:geocoding/geocoding.dart' as goa;
@@ -48,7 +50,7 @@ class LocationService {
     final List<goa.Placemark?> placeMarks = await goa.placemarkFromCoordinates(
         locationData.latitude!, locationData.longitude!);
 
-    if (placeMarks != null && placeMarks.isNotEmpty) {
+    if (placeMarks.isNotEmpty) {
       return placeMarks[0];
     }
     return null;

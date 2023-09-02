@@ -1,9 +1,6 @@
-import 'package:compass_edge/Nav_layer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:compass_edge/Pages/Prominant_Disclosure.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 //import 'package:Compass_Edge/Home_screen.dart';
 import 'package:compass_edge/Pages/splash_Screen.dart';

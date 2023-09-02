@@ -43,7 +43,7 @@ dependencies:
   # permission_handler: ^6.0.1
   location: ^4.3.0  
   animated_splash_screen: ^1.3.0 #animated splash screen
-  google_fonts: ^3.0.1
+  google_fonts: ^4.0.4
   torch_light: ^0.4.0
   google_mobile_ads: ^2.3.0 #to display ads in-app
   phlox_animations: ^2.1.1
