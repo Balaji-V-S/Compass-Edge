@@ -1,5 +1,3 @@
-// ignore_for_file: non_constant_identifier_names
-
 import 'package:flutter/services.dart';
 import 'package:location/location.dart';
 import 'package:geocoding/geocoding.dart' as goa;
@@ -29,8 +27,7 @@ class LocationService {
       if (!_serviceEnabled) {
         _serviceEnabled = await _location.requestService();
       }
-    } on PlatformException catch (error) {
-      print('error code is ${error.code} and message = ${error.message}');
+    } on PlatformException catch (err) {
       _serviceEnabled = false;
       await _checkService();
     }
@@ -42,7 +39,6 @@ class LocationService {
       final LocationData = _location.getLocation();
       return LocationData;
     }
-    return null;
   }
 
   Future<goa.Placemark?> getPlaceMark(
